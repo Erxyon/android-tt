@@ -15,7 +15,7 @@ import android.preference.PreferenceManager;
 import com.merguez.apps.tripletriad.cards.Card;
 import com.merguez.apps.tripletriad.reseau.WifiConnection;
 import com.merguez.apps.tripletriad.robots.Action;
-import com.viish.apps.tripletriad.R;
+import com.merguez.apps.tripletriad.R;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
 

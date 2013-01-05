@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.viish.apps.tripletriad.R;
+import com.merguez.apps.tripletriad.R;
 
 import android.app.Activity;
 import android.content.Context;

@@ -26,7 +26,7 @@ import com.merguez.apps.tripletriad.robots.Action;
 import com.merguez.apps.tripletriad.robots.BotHard;
 import com.merguez.apps.tripletriad.robots.iBot;
 import com.merguez.apps.tripletriad.views.ElementView;
-import com.viish.apps.tripletriad.R;
+import com.merguez.apps.tripletriad.R;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
 

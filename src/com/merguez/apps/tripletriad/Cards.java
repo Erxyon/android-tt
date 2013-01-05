@@ -24,7 +24,7 @@ import android.widget.TextView;
 
 import com.merguez.apps.tripletriad.cards.Card;
 import com.merguez.apps.tripletriad.cards.MinimalistCardView;
-import com.viish.apps.tripletriad.R;
+import com.merguez.apps.tripletriad.R;
 
 public class Cards extends Activity
 {

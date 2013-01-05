@@ -12,7 +12,7 @@ import android.view.Window;
 import android.widget.TextView;
 
 import com.merguez.apps.tripletriad.settings.SettingsActivity;
-import com.viish.apps.tripletriad.R;
+import com.merguez.apps.tripletriad.R;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
 

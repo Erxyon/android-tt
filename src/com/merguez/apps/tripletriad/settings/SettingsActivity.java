@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 
-import com.viish.apps.tripletriad.R;
+import com.merguez.apps.tripletriad.R;
 
 public class SettingsActivity extends PreferenceActivity {
     @Override
