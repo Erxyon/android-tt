@@ -23,7 +23,7 @@ public class Card
 {
 	private String name;
 	private String element;
-	private int level, edition, number;
+	private int level, number;
 	private boolean locked = false, selected = false, hasMalus = false, hasBonus = false;
 	private Bitmap redFace, blueFace, backFace;
 	private CompleteCardView cardView;
@@ -33,11 +33,10 @@ public class Card
 	public String top, left, bot, right;
 	private int animTempColor;
 	
-	public Card(String name, int level, int edition, String top, String left, String bot, String right, String element, int number, Bitmap blue, Bitmap red, Bitmap back)
+	public Card(String name, int level, String top, String left, String bot, String right, String element, int number, Bitmap blue, Bitmap red, Bitmap back)
 	{
 		this.name = name;
 		this.level = level;
-		this.edition = edition;
 		this.top = top;
 		this.left = left;
 		this.bot = bot;
@@ -66,7 +65,7 @@ public class Card
 	@Override
 	public Card clone()
 	{
-		Card clone = new Card(name, level, edition, top, left, bot, right, element, number, blueFace, redFace, backFace);
+		Card clone = new Card(name, level, top, left, bot, right, element, number, blueFace, redFace, backFace);
 		clone.setColor(color);
 		clone.setRewardDirectColor(rewardDirectColor);
 		clone.setSelected(selected);
@@ -290,12 +289,7 @@ public class Card
 	
 	public String getFullName()
 	{
-		return "ff" + edition + "/" + name;
-	}
-	
-	public int getEdition()
-	{
-		return edition;
+		return name;
 	}
 	
 	public String getElement()

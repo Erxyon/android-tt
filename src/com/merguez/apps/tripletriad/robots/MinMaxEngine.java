@@ -244,7 +244,7 @@ public class MinMaxEngine {
 		Card[] cards = new Card[4];
 		ArrayList<Integer> swapped = new ArrayList<Integer>();
 		
-		Card rulePlusWallCard = new Card("", 0, 0, "A", "A", "A", "A", "", 1, null, null, null);
+		Card rulePlusWallCard = new Card("", 0, "A", "A", "A", "A", "", 1, null, null, null);
 		rulePlusWallCard.setColor(player);
 		
 		cells[0] = cell - 3;

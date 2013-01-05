@@ -55,7 +55,7 @@ public class MainMenu extends Activity implements OnClickListener
 		{
 	        DatabaseStream dbs = new DatabaseStream(this);        
 			dbs.initCards();
-			dbs.getGils();
+			//dbs.getGils();
 	        dbs.close();
 	        
 	        SharedPreferences.Editor editor = prefs.edit();

@@ -75,10 +75,6 @@ public class MinimalistCardView extends ImageView
 		return card.getLevel();
 	}
 
-	public int getCardEdition() 
-	{
-		return card.getEdition();
-	}
 	
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {

@@ -436,19 +436,19 @@ public class Game extends Activity implements EventFiredListener
 					//result.setImageResource(R.drawable.win);
 					tempWin = PLAYER;
 					
-					dbs.setGils(dbs.getGils() + Engine.GILS_WIN);
+					//dbs.setGils(dbs.getGils() + Engine.GILS_WIN);
 				}
 				else if (playerScore == opponentScore) {
 					//result.setImageResource(R.drawable.draw);
 					tempWin = NOONE;
 					
-					dbs.setGils(dbs.getGils() + Engine.GILS_DRAW);
+					//dbs.setGils(dbs.getGils() + Engine.GILS_DRAW);
 				}
 				else {
 					//result.setImageResource(R.drawable.lose);
 					tempWin = OPPONENT;
 					
-					dbs.setGils(dbs.getGils() + Engine.GILS_LOOSE);
+					//dbs.setGils(dbs.getGils() + Engine.GILS_LOOSE);
 				}
 				dbs.close();  
 				

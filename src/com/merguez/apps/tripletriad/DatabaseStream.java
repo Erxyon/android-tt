@@ -17,7 +17,7 @@ import android.graphics.BitmapFactory;
 
 import com.merguez.apps.tripletriad.cards.Card;
 
-/*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
+/*  Copyright (C) <2011-2012>  <Florian et Guillaume>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -34,7 +34,6 @@ import com.merguez.apps.tripletriad.cards.Card;
  */
 public class DatabaseStream 
 {
-	private static final int STARTING_GILS = 100;
 	private SQLiteConnector connector;
 	private SQLiteDatabase stream;
 	private Context context;
@@ -52,6 +51,7 @@ public class DatabaseStream
 		initCards();
 	}
 	
+	// cheat
 	public void unlockAllCards()
 	{
 		for (Card c : getAllCards())
@@ -61,30 +61,21 @@ public class DatabaseStream
 	}
 	
 	public Card getCard(Cursor cursor) {
-		int nameColumn = cursor.getColumnIndex("Name");
-		int episodeColumn = cursor.getColumnIndex("Episode");
-		int levelColumn = cursor.getColumnIndex("Level");
-		int topColumn = cursor.getColumnIndex("TopValue");
-		int leftColumn = cursor.getColumnIndex("LeftValue");
-		int botColumn = cursor.getColumnIndex("BotValue");
-		int rightColumn = cursor.getColumnIndex("RightValue");
-		int elementColumn = cursor.getColumnIndex("Element");
 		
-		String name = cursor.getString(nameColumn);
-		int episode = cursor.getInt(episodeColumn);
-		int level = cursor.getInt(levelColumn);
-		String top = cursor.getString(topColumn);
-		String left = cursor.getString(leftColumn);
-		String bot = cursor.getString(botColumn);
-		String right = cursor.getString(rightColumn);
-		String element = cursor.getString(elementColumn);
+		String name = cursor.getString(cursor.getColumnIndex("Name"));
+		int level = cursor.getInt(cursor.getColumnIndex("Level"));
+		String top = cursor.getString(cursor.getColumnIndex("TopValue"));
+		String left = cursor.getString(cursor.getColumnIndex("LeftValue"));
+		String bot = cursor.getString(cursor.getColumnIndex("BotValue"));
+		String right = cursor.getString(cursor.getColumnIndex("RightValue"));
+		String element = cursor.getString(cursor.getColumnIndex("Element"));
 		
-		String fullName = "ff" + episode + "/" + name;
+		String fullName = name;
 		Bitmap blue = null, red = null, back = null;
 		try 
 		{
-			blue = BitmapFactory.decodeStream(context.getResources().getAssets().open(fullName + ".1.png"));
-			red = BitmapFactory.decodeStream(context.getResources().getAssets().open(fullName + ".2.png"));
+			blue = BitmapFactory.decodeStream(context.getResources().getAssets().open(fullName + ".bleue.jpg"));
+			red = BitmapFactory.decodeStream(context.getResources().getAssets().open(fullName + ".rouge.jpg"));
 			back = BitmapFactory.decodeStream(context.getResources().getAssets().open("back.png"));	
 		} 
 		catch (IOException e) 
@@ -92,18 +83,17 @@ public class DatabaseStream
 			e.printStackTrace();
 		}
 		
-		Card card = new Card(name, level, episode, top, left, bot, right, element, 1, blue, red, back);
+		Card card = new Card(name, level, top, left, bot, right, element, 1, blue, red, back);
 		return card;
 	}
 	
 	public Card getCard(String cardFullName)
 	{
 		Card card = null;
-		String name = cardFullName.split("/")[1];
-		String episodeName = cardFullName.split("/")[0];
-		int episode = Integer.parseInt(episodeName.split("ff")[1]);
+		String name = cardFullName;
 		
-		Cursor result = stream.query("Cards", null, "Name LIKE \"" + name + "\" AND Episode LIKE " + episode, null, null, null, null);
+		
+		Cursor result = stream.query("Cards", null, "Name LIKE \"" + name, null, null, null, null);
 		if (result != null && result.move(1)) {
 			card = getCard(result);
 		}
@@ -348,7 +338,7 @@ public class DatabaseStream
 		}
 	}
 	
-	public int getGils()
+	/*public int getGils()
 	{
 		SharedPreferences lastSettings = context.getSharedPreferences("TripleTriad", Context.MODE_PRIVATE);
 		int gils = lastSettings.getInt("Gils", 0);
@@ -361,10 +351,12 @@ public class DatabaseStream
 		Editor editor = lastSettings.edit();
 		editor.putInt("Gils", gils);
 		editor.apply();
-	}
+	}*/
 	
+	// Distribue les cartes au début
 	public void initCards() 
 	{
+		// i = niveau
 		for (int i = 1; i <= 10; i++)
 		{
 			int howMuch = 0;
@@ -374,7 +366,7 @@ public class DatabaseStream
 			else howMuch = 4;
 			
 			ArrayList<Card> cards = new ArrayList<Card>();
-			cards = getXRandomCards("Level LIKE " + i + " AND Episode NOT LIKE 0", howMuch);
+			cards = getXRandomCards("Level LIKE " + i + "", howMuch);
 			
 			for (Card c : cards)
 			{
@@ -385,26 +377,10 @@ public class DatabaseStream
 		SharedPreferences lastSettings = context.getSharedPreferences("TripleTriad", Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = lastSettings.edit();
 		editor.putBoolean("FirstTime", false);
-		editor.putInt("Gils", STARTING_GILS); // 100 Gils au depart
 		editor.commit();
 	}
 
-	public void unlockAllDissidiaCards() 
-	{
-		Cursor result = stream.query("Cards", null, "Episode LIKE 0", null, null, null, null);
-		
-		if (result != null)
-		{
-			while (result.move(1))
-	    	{
-	    		int nameColumn = result.getColumnIndex("Name");
-				String name = result.getString(nameColumn);
-				
-				nouvelleCarte("ff0/" + name);
-	    	}
-			result.close();
-		}
-	}
+	
 }
 
 class SQLiteConnector extends SQLiteOpenHelper 
