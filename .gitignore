@@ -16,7 +16,7 @@ gen/
 local.properties
 
 # Images resources
-res/drawable*
+# res/drawable*
 assets/*
 ic_launcher-web.png
 
