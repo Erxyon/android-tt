@@ -84,8 +84,8 @@ public class MinimalistCardView extends ImageView
 	private void initPaint()
 	{
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "font.ttf");
-		paint.setTypeface(typeface); 
+		//Typeface typeface = Typeface.createFromAsset(getContext().getAssets(), "font.ttf");
+		//paint.setTypeface(typeface); 
 		paint.setColor(PAINT_COLOR);
 		paint.setTextAlign(Align.LEFT);
 		paint.setTextSize(PAINT_SIZE);

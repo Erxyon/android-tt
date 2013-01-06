@@ -6,7 +6,7 @@
 	android:orientation="vertical"
 	android:gravity="center">
 	
-		<com.viish.apps.tripletriad.cards.MinimalistCardView
+		<com.merguez.apps.tripletriad.cards.MinimalistCardView
 			android:id="@+id/icon_image"
 			android:adjustViewBounds="true"
 			android:layout_width="wrap_content"

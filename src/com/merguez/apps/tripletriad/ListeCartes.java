@@ -15,7 +15,21 @@ public class ListeCartes {
 		
 		Context context;
 		// je supppose que le nom n'a pas de majuscules ?
+		/*
+		 * La question est pas conne, parce que le nom de la carte affiché a une majuscule et peut-être des accents/espaces/virgules,
+		 * alors que le chemin de l'image n'a pas ces caractères à la con
+		 * 
+		 * Mais en fait, on va indiquer le nom affiché (ex: Phénix) et on en déduira le chemin de l'image (to_lower() -> phenix) (sinon on peut pas retrouver les accents/...)
+		 * 
+		 * Donc il faut mettre le vrai nom avec majuscules et tout le tralala...
+		 */
 		// remarque : le niveau des cartes je sais pas comment le deviner donc pour le moment osef
+		/*
+		 * 
+		 * J'ai trouvé ce site : http://www.fffury.com/FF8-TripleTriad-Cartes.html
+		 * 
+		 * 
+		 */
 		defaut.add(new Card(context,"acarnan", 7, 8, 4, 5, 8, Element.NONE)); // mettre 10 si A
 		// ok tête de cul
 		defaut.add(new Card(context,"acron", 7, 8, 8, 2, 5, Element.THUNDER)); // mettre 10 si A
