@@ -2,7 +2,10 @@ package com.merguez.apps.tripletriad;
 
 import java.util.Vector;
 
+import android.content.Context;
+
 import com.merguez.apps.tripletriad.cards.Card;
+import com.merguez.apps.tripletriad.cards.Card.Element;
 
 public class ListeCartes {
 
@@ -10,7 +13,9 @@ public class ListeCartes {
 	
 	public void fonction() {
 		
-		defaut.add(new Card("Levrikon", 7, "1", "4", "2", "4", ""));
+		Context context;
+		
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		
 		
 		

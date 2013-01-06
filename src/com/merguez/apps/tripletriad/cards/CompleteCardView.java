@@ -139,13 +139,13 @@ public class CompleteCardView extends ImageView
 			canvas.drawText(card.left, posx + 3, posy + 3 * taillePinceau / 2, paint);
 			
 			paint.setShadowLayer(SHADOW_RADIUS, SHADOW_OFFSET, SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.bot, posx + (3 * taillePinceau / 2 + 2) / 2, posy + 2 * taillePinceau, paint);
+			canvas.drawText(card.bottom, posx + (3 * taillePinceau / 2 + 2) / 2, posy + 2 * taillePinceau, paint);
 			paint.setShadowLayer(SHADOW_RADIUS, SHADOW_OFFSET, -SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.bot, posx + (3 * taillePinceau / 2 + 2) / 2, posy + 2 * taillePinceau, paint);
+			canvas.drawText(card.bottom, posx + (3 * taillePinceau / 2 + 2) / 2, posy + 2 * taillePinceau, paint);
 			paint.setShadowLayer(SHADOW_RADIUS, -SHADOW_OFFSET, SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.bot, posx + (3 * taillePinceau / 2 + 2) / 2, posy + 2 * taillePinceau, paint);
+			canvas.drawText(card.bottom, posx + (3 * taillePinceau / 2 + 2) / 2, posy + 2 * taillePinceau, paint);
 			paint.setShadowLayer(SHADOW_RADIUS, -SHADOW_OFFSET, -SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.bot, posx + (3 * taillePinceau / 2 + 2) / 2, posy + 2 * taillePinceau, paint);
+			canvas.drawText(card.bottom, posx + (3 * taillePinceau / 2 + 2) / 2, posy + 2 * taillePinceau, paint);
 			
 			paint.setShadowLayer(SHADOW_RADIUS, SHADOW_OFFSET, SHADOW_OFFSET, SHADOW_COLOR);
 			canvas.drawText(card.right, posx + (3 * taillePinceau / 2) - 2, posy + 3 * taillePinceau / 2, paint);

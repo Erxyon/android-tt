@@ -1,6 +1,10 @@
 package com.merguez.apps.tripletriad.cards;
 
+import java.io.IOException;
+
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import com.merguez.apps.tripletriad.Engine;
 
@@ -19,45 +23,70 @@ import com.merguez.apps.tripletriad.Engine;
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+/*
+ * Règles de calcul :
+ * - Elémentaire
+ * - Bataille
+ */
 public class Card
 {
 	private String name;
-	private String element;
-	private int level, number;
+	private int level;
 	private boolean locked = false, selected = false, hasMalus = false, hasBonus = false;
-	private Bitmap redFace, blueFace, backFace;
+	private Bitmap redFace, blueFace, backFace; // A deplacer dans la view
 	private CompleteCardView cardView;
 	private int color, rewardDirectColor;
 	private boolean visible;
 	
-	public String top, left, bot, right;
+	public static enum Element {NONE, THUNDER, WATER, WIND, ICE, FIRE, POISON, EARTH, HOLY, DARKNESS};
+	public Element element;
+	
+	public int top, left, bottom, right;
 	private int animTempColor;
 	
-	public Card(String name, int level, String top, String left, String bot, String right, String element, int number, Bitmap blue, Bitmap red, Bitmap back)
+	// this.number = number;
+	
+	public Card(Context context, String name, int level, int top, int left, int bottom, int right, Element element)
 	{
 		this.name = name;
 		this.level = level;
 		this.top = top;
 		this.left = left;
-		this.bot = bot;
+		this.bottom = bottom;
 		this.right = right;
 		this.element = element;
-		this.number = number;
 		
 		color = rewardDirectColor = Engine.BLUE;
 		visible = true;
 		
-		blueFace = blue;
-		redFace = red;
-		backFace = back;
+		/*
+		 * A deplacer dans la view
+		 */
+		try 
+		{
+			blueFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(this.name + ".bleue.jpg"));
+			redFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(this.name + ".rouge.jpg"));
+			backFace = BitmapFactory.decodeStream(context.getResources().getAssets().open("back.png"));	
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
 		
 		cardView = null;
 	}
 	
+	/*
+	 * A deplacer dans la view
+	 */
 	public CompleteCardView getView() {
 		return cardView;
 	}
 
+	/*
+	 * A deplacer dans la view
+	 */
 	public void setCardView(CompleteCardView cardView) {
 		this.cardView = cardView;
 	}
@@ -65,7 +94,7 @@ public class Card
 	@Override
 	public Card clone()
 	{
-		Card clone = new Card(name, level, top, left, bot, right, element, number, blueFace, redFace, backFace);
+		Card clone = new Card(name, level, top, left, bottom, right, element, number, blueFace, redFace, backFace);
 		clone.setColor(color);
 		clone.setRewardDirectColor(rewardDirectColor);
 		clone.setSelected(selected);
@@ -131,19 +160,10 @@ public class Card
 		}
 	}
 	
+	// robot + regle
 	public int getTotal()
 	{
 		return getTopValue() + getBottomValue() + getLeftValue() + getRightValue();
-	}
-	
-	public int getNumber()
-	{
-		return number;
-	}
-	
-	public void setNumber(int n)
-	{
-		number = n;
 	}
 	
 	public void resetBonusMalusIfNeeded() {
@@ -186,12 +206,12 @@ public class Card
 			else { left = String.valueOf(temp); }
 		}
 		
-		if (!bot.equals("A"))
+		if (!bottom.equals("A"))
 		{
-			int temp = Integer.parseInt(bot);
+			int temp = Integer.parseInt(bottom);
 			temp += 1;
-			if (temp == 10) { bot = "A"; }
-			else { bot = String.valueOf(temp); }
+			if (temp == 10) { bottom = "A"; }
+			else { bottom = String.valueOf(temp); }
 		}
 		
 		if (!right.equals("A"))
@@ -230,13 +250,13 @@ public class Card
 		}
 		else { left = "9"; }
 		
-		if (!bot.equals("A"))
+		if (!bottom.equals("A"))
 		{
-			int temp = Integer.parseInt(bot);
+			int temp = Integer.parseInt(bottom);
 			temp -= 1;
-			bot = String.valueOf(temp);
+			bottom = String.valueOf(temp);
 		}
-		else { bot = "9"; }
+		else { bottom = "9"; }
 		
 		if (!right.equals("A"))
 		{
@@ -254,7 +274,7 @@ public class Card
 	@Override
 	public String toString()
 	{
-		return name + " (level " +  level + ") : " + top + ", " + left + ", " + bot + ", " + right + ", " + element; 
+		return name + " (level " +  level + ") : " + top + ", " + left + ", " + bottom + ", " + right + ", " + element; 
 	}
 	
 	public void lock()
@@ -299,50 +319,22 @@ public class Card
 	
 	public int getTopValue()
 	{
-		try
-		{
-			return Integer.parseInt(top);
-		}
-		catch (NumberFormatException e)
-		{
-			return 10;
-		}
+		return top;
 	}
 	
 	public int getLeftValue()
 	{
-		try
-		{
-			return Integer.parseInt(left);
-		}
-		catch (NumberFormatException e)
-		{
-			return 10;
-		}
+		return left;
 	}
 	
 	public int getBottomValue()
 	{
-		try
-		{
-			return Integer.parseInt(bot);
-		}
-		catch (NumberFormatException e)
-		{
-			return 10;
-		}
+		return bottom;
 	}
 	
 	public int getRightValue()
 	{
-		try
-		{
-			return Integer.parseInt(right);
-		}
-		catch (NumberFormatException e)
-		{
-			return 10;
-		}
+		return right;
 	}
 	
 	public int getLevel()
