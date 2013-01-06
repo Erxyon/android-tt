@@ -11,12 +11,90 @@ public class ListeCartes {
 
 	public static Vector<Card> defaut;
 	
-	public void fonction() {
+	public void listeDesCartes() {
 		
 		Context context;
-		
+		// je supppose que le nom n'a pas de majuscules ?
+		// remarque : le niveau des cartes je sais pas comment le deviner donc pour le moment osef
+		defaut.add(new Card(context,"acarnan", 7, 8, 4, 5, 8, Element.NONE)); // mettre 10 si A
+		// ok tête de cul
+		defaut.add(new Card(context,"acron", 7, 8, 8, 2, 5, Element.THUNDER)); // mettre 10 si A
+		defaut.add(new Card(context,"adel", 7, 1, 8, 9, 10, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"adephage", 7, 3, 5, 5, 5, Element.POISON)); // mettre 10 si A
+		defaut.add(new Card(context,"agamemnon", 7, 5, 8, 6, 6, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"ahuri", 7, 8, 4, 10, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"alexander", 7, 9, 2, 4, 10, Element.HOLY)); // mettre 10 si A
+		defaut.add(new Card(context,"alienator", 7, 8, 8, 4, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"akakronox", 7, 8, 3, 7, 6, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"angel", 7, 9, 3, 6, 7, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"ao", 7, 4, 6, 5, 5, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"aphide", 7, 2, 4, 4, 1, Element.THUNDER)); // mettre 10 si A
+		defaut.add(new Card(context,"arconada", 7, 5, 5, 3, 1, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"attila", 7, 6, 7, 4, 8, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"bahamut", 7, 10, 6, 2, 8, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"balamb_garden", 7, 8, 8, 2, 10, Element.HOLY)); // mettre 10 si A
+		defaut.add(new Card(context,"barbarian", 7, 5, 4, 2, 6, Element.FIRE)); // mettre 10 si A
+		defaut.add(new Card(context,"berseker", 7, 4, 2, 7, 4, Element.FIRE)); // mettre 10 si A
+		defaut.add(new Card(context,"bogomile", 7, 1, 5, 1, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"cariatide", 7, 6, 5, 4, 5, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"carnidea", 7, 2, 1, 6, 1, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"celebis", 7, 7, 5, 3, 2, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"cerberes", 7, 7, 10, 6, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"cid", 7, 7, 7, 3, 10, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"crono", 7, 5, 2, 9, 10, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"cyanide", 7, 1, 8, 4, 8, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"diodon", 7, 3, 1, 2, 5, Element.EARTH)); // mettre 10 si A
+		defaut.add(new Card(context,"doublure", 7, 8, 4, 5, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"draconus", 7, 3, 6, 3, 7, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"ecorche", 7, 1, 3, 8, 8, Element.POISON)); // mettre 10 si A
+		defaut.add(new Card(context,"edea", 7, 10, 3, 3, 10, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
-		
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		
 		
 		execSQL("INSERT INTO Cards VALUES (\"Levrikon\", 7, 1, \"1\", \"4\", \"2\", \"4\", \"\")");

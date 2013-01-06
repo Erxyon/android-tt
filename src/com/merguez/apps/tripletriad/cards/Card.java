@@ -65,8 +65,9 @@ public class Card
 		 */
 		try 
 		{
-			blueFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(this.name + ".bleue.jpg"));
-			redFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(this.name + ".rouge.jpg"));
+			blueFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(this.name + "_bleue.jpg"));
+			redFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(this.name + "_rouge.jpg"));
+			// j'ai corrigé le .bleu/rouge en _rouge/bleu
 			backFace = BitmapFactory.decodeStream(context.getResources().getAssets().open("back.png"));	
 		} 
 		catch (IOException e) 
