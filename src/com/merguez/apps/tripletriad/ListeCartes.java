@@ -112,7 +112,7 @@ public class ListeCartes {
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		
-		
+		/*
 		execSQL("INSERT INTO Cards VALUES (\"Levrikon\", 7, 1, \"1\", \"4\", \"2\", \"4\", \"\")");
 		execSQL("INSERT INTO Cards VALUES (\"Mu\", 7, 1, \"3\", \"2\", \"2\", \"3\", \"\")");
 		execSQL("INSERT INTO Cards VALUES (\"SwordDance\", 7, 1, \"5\", \"2\", \"3\", \"2\", \"\")");
@@ -495,7 +495,8 @@ public class ListeCartes {
 		execSQL("INSERT INTO Cards VALUES (\"Tidus\", 0, 10, \"A\", \"7\", \"2\", \"A\", \"\")");
 		execSQL("INSERT INTO Cards VALUES (\"WarriorOfLight\", 0, 10, \"A\", \"2\", \"A\", \"8\", \"\")");
 		execSQL("INSERT INTO Cards VALUES (\"ImperatorPalamencia\", 0, 10, \"A\", \"1\", \"3\", \"A\", \"\")");
-		execSQL("INSERT INTO Cards VALUES (\"Kefka\", 0, 10, \"9\", \"8\", \"A\", \"1\", \"\")");
+		execSQL("INSERT INTO Cards VALUES (\"Kefka\", 0, 10, \"9\", \"8\", \"A\", \"1\", \"\")"); 
+		*/
 	}
 	
 }
