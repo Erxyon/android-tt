@@ -34,12 +34,13 @@ import com.merguez.apps.tripletriad.R;
  */
 public class Engine
 {
-	/*
+	
 	public static final int NOONE = 0;
 	public static final int PLAYER = 1;
 	public static final int OPPONENT = 2;
 	public static final int BLUE = PLAYER;
 	public static final int RED = OPPONENT;
+	/*
 	
 	public static final int GILS_WIN = 100;
 	public static final int GILS_LOOSE = 10;

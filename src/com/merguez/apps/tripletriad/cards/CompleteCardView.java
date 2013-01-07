@@ -44,11 +44,10 @@ public class CompleteCardView extends ImageView
 	private Paint paint;
 	private Card card;
 	
-	public CompleteCardView(Context context, Card card)
+	public CompleteCardView(Context context)
 	{
 		super(context);
 		
-		this.card = card;
 		setClickable(false); 
 		
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -58,6 +57,12 @@ public class CompleteCardView extends ImageView
 		paint.setTextAlign(Align.LEFT);
 		taillePinceau = PAINT_SIZE;
 		paint.setTextSize(taillePinceau);
+	}
+	
+	public void setCard(Card c)
+	{
+		card = c;
+		invalidate();
 	}
 	
 	public void swapColor()
@@ -120,41 +125,6 @@ public class CompleteCardView extends ImageView
 				canvas.drawBitmap(card.getRedFace(), posx, posy, null);
 			}
 			
-			paint.setShadowLayer(SHADOW_RADIUS, SHADOW_OFFSET, SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.top, posx + (3 * taillePinceau / 2 + 2) / 2, posy + taillePinceau, paint);
-			paint.setShadowLayer(SHADOW_RADIUS, SHADOW_OFFSET, -SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.top, posx + (3 * taillePinceau / 2 + 2) / 2, posy + taillePinceau, paint);
-			paint.setShadowLayer(SHADOW_RADIUS, -SHADOW_OFFSET, SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.top, posx + (3 * taillePinceau / 2 + 2) / 2, posy + taillePinceau, paint);
-			paint.setShadowLayer(SHADOW_RADIUS, -SHADOW_OFFSET, -SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.top, posx + (3 * taillePinceau / 2 + 2) / 2, posy + taillePinceau, paint);
-			
-			paint.setShadowLayer(SHADOW_RADIUS, SHADOW_OFFSET, SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.left, posx + 3, posy + 3 * taillePinceau / 2, paint);
-			paint.setShadowLayer(SHADOW_RADIUS, SHADOW_OFFSET, -SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.left, posx + 3, posy + 3 * taillePinceau / 2, paint);
-			paint.setShadowLayer(SHADOW_RADIUS, -SHADOW_OFFSET, SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.left, posx + 3, posy + 3 * taillePinceau / 2, paint);
-			paint.setShadowLayer(SHADOW_RADIUS, -SHADOW_OFFSET, -SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.left, posx + 3, posy + 3 * taillePinceau / 2, paint);
-			
-			paint.setShadowLayer(SHADOW_RADIUS, SHADOW_OFFSET, SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.bottom, posx + (3 * taillePinceau / 2 + 2) / 2, posy + 2 * taillePinceau, paint);
-			paint.setShadowLayer(SHADOW_RADIUS, SHADOW_OFFSET, -SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.bottom, posx + (3 * taillePinceau / 2 + 2) / 2, posy + 2 * taillePinceau, paint);
-			paint.setShadowLayer(SHADOW_RADIUS, -SHADOW_OFFSET, SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.bottom, posx + (3 * taillePinceau / 2 + 2) / 2, posy + 2 * taillePinceau, paint);
-			paint.setShadowLayer(SHADOW_RADIUS, -SHADOW_OFFSET, -SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.bottom, posx + (3 * taillePinceau / 2 + 2) / 2, posy + 2 * taillePinceau, paint);
-			
-			paint.setShadowLayer(SHADOW_RADIUS, SHADOW_OFFSET, SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.right, posx + (3 * taillePinceau / 2) - 2, posy + 3 * taillePinceau / 2, paint);
-			paint.setShadowLayer(SHADOW_RADIUS, SHADOW_OFFSET, -SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.right, posx + (3 * taillePinceau / 2) - 2, posy + 3 * taillePinceau / 2, paint);
-			paint.setShadowLayer(SHADOW_RADIUS, -SHADOW_OFFSET, SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.right, posx + (3 * taillePinceau / 2) - 2, posy + 3 * taillePinceau / 2, paint);
-			paint.setShadowLayer(SHADOW_RADIUS, -SHADOW_OFFSET, -SHADOW_OFFSET, SHADOW_COLOR);
-			canvas.drawText(card.right, posx + (3 * taillePinceau / 2) - 2, posy + 3 * taillePinceau / 2, paint);
 		}
 		else
 		{

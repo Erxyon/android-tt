@@ -1,5 +1,6 @@
 package com.merguez.apps.tripletriad;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 import android.content.Context;
@@ -9,11 +10,10 @@ import com.merguez.apps.tripletriad.cards.Card.Element;
 
 public class ListeCartes {
 
-	public static Vector<Card> defaut;
+	public static ArrayList<Card> defaut;
 	
-	public void listeDesCartes() {
+	public static void listeDesCartes(Context context) {
 		
-		Context context = null;
 		// je supppose que le nom n'a pas de majuscules ?
 		/*
 		 * La question est pas conne, parce que le nom de la carte affiché a une majuscule et peut-être des accents/espaces/virgules,
@@ -31,6 +31,7 @@ public class ListeCartes {
 		 * Parfait !
 		 * 
 		 */
+		defaut = new ArrayList<Card>();
 		defaut.add(new Card(context,"Acarnan", 7, 8, 4, 5, 8, Element.NONE)); // mettre 10 si A
 		// ok tête de cul
 		defaut.add(new Card(context,"Acron", 7, 8, 8, 2, 5, Element.THUNDER)); // mettre 10 si A
@@ -69,6 +70,7 @@ public class ListeCartes {
 		defaut.add(new Card(context,"Elastos", 7, 1, 1, 4, 5, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Elite", 7, 3, 7, 1, 3, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Ellone", 7, 9, 8, 10, 2, Element.NONE)); // mettre 10 si A
+		/*defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
@@ -110,8 +112,7 @@ public class ListeCartes {
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
-		
+		*/
 		/*
 		execSQL("INSERT INTO Cards VALUES (\"Levrikon\", 7, 1, \"1\", \"4\", \"2\", \"4\", \"\")");
 		execSQL("INSERT INTO Cards VALUES (\"Mu\", 7, 1, \"3\", \"2\", \"2\", \"3\", \"\")");

@@ -32,6 +32,7 @@ import com.merguez.apps.tripletriad.Engine;
 public class Card
 {
 	private String name;
+	private Context context;
 	private int level;
 	private boolean locked = false, selected = false;
 	private Bitmap redFace, blueFace, backFace; // A deplacer dans la view
@@ -50,6 +51,7 @@ public class Card
 	
 	public Card(Context context, String name, int level, int top, int left, int bottom, int right, Element element)
 	{
+		this.context = context;
 		this.name = name;
 		this.level = level;
 		this.top = top;
@@ -101,7 +103,7 @@ public class Card
 	@Override
 	public Card clone()
 	{
-		Card clone = new Card(name, level, top, left, bottom, right, element, number, blueFace, redFace, backFace);
+		Card clone = new Card(context, name, level, top, left, bottom, right, element);
 		clone.setColor(color);
 		clone.setRewardDirectColor(rewardDirectColor);
 		clone.setSelected(selected);
