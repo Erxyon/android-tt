@@ -18,50 +18,52 @@ public class ListeCartes {
 		/*
 		 * La question est pas conne, parce que le nom de la carte affiché a une majuscule et peut-être des accents/espaces/virgules,
 		 * alors que le chemin de l'image n'a pas ces caractères à la con
-		 * 
+		 * -->  tu vois des fois je suis touché par le dieu de la programmation <:o)
 		 * Mais en fait, on va indiquer le nom affiché (ex: Phénix) et on en déduira le chemin de l'image (to_lower() -> phenix) (sinon on peut pas retrouver les accents/...)
 		 * 
 		 * Donc il faut mettre le vrai nom avec majuscules et tout le tralala...
+		 *ok mon général
 		 */
 		// remarque : le niveau des cartes je sais pas comment le deviner donc pour le moment osef
 		/*
 		 * 
 		 * J'ai trouvé ce site : http://www.fffury.com/FF8-TripleTriad-Cartes.html
-		 * 
+		 * Parfait !
 		 * 
 		 */
-		defaut.add(new Card(context,"acarnan", 7, 8, 4, 5, 8, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Acarnan", 7, 8, 4, 5, 8, Element.NONE)); // mettre 10 si A
 		// ok tête de cul
-		defaut.add(new Card(context,"acron", 7, 8, 8, 2, 5, Element.THUNDER)); // mettre 10 si A
-		defaut.add(new Card(context,"adel", 7, 1, 8, 9, 10, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"adephage", 7, 3, 5, 5, 5, Element.POISON)); // mettre 10 si A
-		defaut.add(new Card(context,"agamemnon", 7, 5, 8, 6, 6, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"ahuri", 7, 8, 4, 10, 4, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"alexander", 7, 9, 2, 4, 10, Element.HOLY)); // mettre 10 si A
-		defaut.add(new Card(context,"alienator", 7, 8, 8, 4, 4, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"akakronox", 7, 8, 3, 7, 6, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"angel", 7, 9, 3, 6, 7, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"ao", 7, 4, 6, 5, 5, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"aphide", 7, 2, 4, 4, 1, Element.THUNDER)); // mettre 10 si A
-		defaut.add(new Card(context,"arconada", 7, 5, 5, 3, 1, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"attila", 7, 6, 7, 4, 8, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"bahamut", 7, 10, 6, 2, 8, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"balamb_garden", 7, 8, 8, 2, 10, Element.HOLY)); // mettre 10 si A
-		defaut.add(new Card(context,"barbarian", 7, 5, 4, 2, 6, Element.FIRE)); // mettre 10 si A
-		defaut.add(new Card(context,"berseker", 7, 4, 2, 7, 4, Element.FIRE)); // mettre 10 si A
-		defaut.add(new Card(context,"bogomile", 7, 1, 5, 1, 4, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"cariatide", 7, 6, 5, 4, 5, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"carnidea", 7, 2, 1, 6, 1, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"celebis", 7, 7, 5, 3, 2, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"cerberes", 7, 7, 10, 6, 4, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"cid", 7, 7, 7, 3, 10, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"crono", 7, 5, 2, 9, 10, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"cyanide", 7, 1, 8, 4, 8, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"diodon", 7, 3, 1, 2, 5, Element.EARTH)); // mettre 10 si A
-		defaut.add(new Card(context,"doublure", 7, 8, 4, 5, 4, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"draconus", 7, 3, 6, 3, 7, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"ecorche", 7, 1, 3, 8, 8, Element.POISON)); // mettre 10 si A
-		defaut.add(new Card(context,"edea", 7, 10, 3, 3, 10, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Acron", 7, 8, 8, 2, 5, Element.THUNDER)); // mettre 10 si A
+		defaut.add(new Card(context,"Adel", 7, 1, 8, 9, 10, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Adephage", 7, 3, 5, 5, 5, Element.POISON)); // mettre 10 si A
+		defaut.add(new Card(context,"Agamemnon", 7, 5, 8, 6, 6, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Ahuri", 7, 8, 4, 10, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Alexander", 7, 9, 2, 4, 10, Element.HOLY)); // mettre 10 si A
+		defaut.add(new Card(context,"Alienator", 7, 8, 8, 4, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Akakronox", 7, 8, 3, 7, 6, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Angel", 7, 9, 3, 6, 7, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Ao", 7, 4, 6, 5, 5, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Aphide", 7, 2, 4, 4, 1, Element.THUNDER)); // mettre 10 si A
+		defaut.add(new Card(context,"Arconada", 7, 5, 5, 3, 1, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Attila", 7, 6, 7, 4, 8, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Bahamut", 7, 10, 6, 2, 8, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Balamb_garden", 7, 8, 8, 2, 10, Element.HOLY)); // mettre 10 si A
+		defaut.add(new Card(context,"Barbarian", 7, 5, 4, 2, 6, Element.FIRE)); // mettre 10 si A
+		defaut.add(new Card(context,"Berseker", 7, 4, 2, 7, 4, Element.FIRE)); // mettre 10 si A
+		defaut.add(new Card(context,"Bogomile", 7, 1, 5, 1, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Cariatide", 7, 6, 5, 4, 5, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Carnidéa", 7, 2, 1, 6, 1, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Célébis", 7, 7, 5, 3, 2, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Cerberes", 7, 7, 10, 6, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Cid", 7, 7, 7, 3, 10, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Crono", 7, 5, 2, 9, 10, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Cyanide", 7, 1, 8, 4, 8, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Diodon", 7, 3, 1, 2, 5, Element.EARTH)); // mettre 10 si A
+		defaut.add(new Card(context,"Doublure", 7, 8, 4, 5, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Draconus", 7, 3, 6, 3, 7, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Dcorche", 7, 1, 3, 8, 8, Element.POISON)); // mettre 10 si A
+		defaut.add(new Card(context,"Edéa", 7, 10, 3, 3, 10, Element.NONE)); // mettre 10 si A
+		// c'est tout, pour le moment.
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
