@@ -33,7 +33,7 @@ public class Card
 {
 	private String name;
 	private int level;
-	private boolean locked = false, selected = false, hasMalus = false, hasBonus = false;
+	private boolean locked = false, selected = false;
 	private Bitmap redFace, blueFace, backFace; // A deplacer dans la view
 	private CompleteCardView cardView;
 	private int color, rewardDirectColor;
@@ -43,6 +43,7 @@ public class Card
 	public Element element;
 	
 	public int top, left, bottom, right;
+	public int[] valeursBase = new int[4];
 	private int animTempColor;
 	
 	// this.number = number;
@@ -56,6 +57,11 @@ public class Card
 		this.bottom = bottom;
 		this.right = right;
 		this.element = element;
+
+		this.valeursBase[0] = top;
+		this.valeursBase[1] = left;
+		this.valeursBase[2] = bottom;
+		this.valeursBase[3] = right;
 		
 		color = rewardDirectColor = Engine.BLUE;
 		visible = true;
@@ -167,109 +173,35 @@ public class Card
 		return getTopValue() + getBottomValue() + getLeftValue() + getRightValue();
 	}
 	
-	public void resetBonusMalusIfNeeded() {
-		resetBonusMalusIfNeeded(false);
-	}
-	public void resetBonusMalusIfNeeded(boolean simulating) {
-		if (hasBonus) {
-			malusElementaire(simulating);
-			hasMalus = hasBonus = false;
-		} else if (hasMalus) {
-			bonusElementaire(simulating);
-			hasMalus = hasBonus = false;
+	public void setElement(Element elem) {
+		if (this.element.equals(elem)) {
+			this.left = Math.min(this.left+1, 10);
+			this.top = Math.min(this.top+1, 10);
+			this.right = Math.min(this.right+1, 10);
+			this.bottom = Math.min(this.bottom+1, 10);
+		} else {
+			/*
+			 * Note : je ne sais pas ce qu'il se passe si une carte à 1 se prend un malus élémentaire
+			 * ça fait 0 ou 1 ?
+			 */
+			this.left = Math.max(this.left-1, 10);
+			this.top = Math.max(this.top-1, 10);
+			this.right = Math.max(this.right-1, 10);
+			this.bottom = Math.max(this.bottom-1, 10);
 		}
-		
+		/*
+		 * 
 		if (cardView != null && !simulating) {
 			cardView.invalidate();
 		}
+		 */
 	}
 	
-	public void bonusElementaire() {
-		bonusElementaire(false);
-	}
-	public void bonusElementaire(boolean simulating)
-	{
-		hasBonus = true;
-		
-		if (!top.equals("A"))
-		{
-			int temp = Integer.parseInt(top);
-			temp += 1;
-			if (temp == 10) { top = "A"; }
-			else { top = String.valueOf(temp); }
-		}
-		
-		if (!left.equals("A"))
-		{
-			int temp = Integer.parseInt(left);
-			temp += 1;
-			if (temp == 10) { left = "A"; }
-			else { left = String.valueOf(temp); }
-		}
-		
-		if (!bottom.equals("A"))
-		{
-			int temp = Integer.parseInt(bottom);
-			temp += 1;
-			if (temp == 10) { bottom = "A"; }
-			else { bottom = String.valueOf(temp); }
-		}
-		
-		if (!right.equals("A"))
-		{
-			int temp = Integer.parseInt(right);
-			temp += 1;
-			if (temp == 10) { right = "A"; }
-			else { right = String.valueOf(temp); }
-		}
-		
-		if (cardView != null && !simulating) {
-			cardView.invalidate();
-		}
-	}
-
-	public void malusElementaire() {
-		malusElementaire(false);
-	}
-	public void malusElementaire(boolean simulating)
-	{
-		hasMalus = true;
-		
-		if (!top.equals("A"))
-		{
-			int temp = Integer.parseInt(top);
-			temp -= 1;
-			top = String.valueOf(temp);
-		}
-		else { top = "9"; }
-		
-		if (!left.equals("A"))
-		{
-			int temp = Integer.parseInt(left);
-			temp -= 1;
-			left = String.valueOf(temp);
-		}
-		else { left = "9"; }
-		
-		if (!bottom.equals("A"))
-		{
-			int temp = Integer.parseInt(bottom);
-			temp -= 1;
-			bottom = String.valueOf(temp);
-		}
-		else { bottom = "9"; }
-		
-		if (!right.equals("A"))
-		{
-			int temp = Integer.parseInt(right);
-			temp -= 1;
-			right = String.valueOf(temp);
-		}
-		else { right = "9"; }
-		
-		if (cardView != null && !simulating) {
-			cardView.invalidate();
-		}
+	public void resetElement() {
+		this.top = this.valeursBase[0];
+		this.left = this.valeursBase[1];
+		this.bottom = this.valeursBase[2];
+		this.right = this.valeursBase[3];
 	}
 	
 	@Override
@@ -313,7 +245,7 @@ public class Card
 		return name;
 	}
 	
-	public String getElement()
+	public Element getElement()
 	{
 		return element;
 	}
