@@ -17,7 +17,7 @@ package com.merguez.apps.tripletriad.robots;
  */
 public interface iBot 
 {
-	public Action nextMove();
+	//public Action nextMove();
 
-	public int getPlayerValue();
+	//public int getPlayerValue();
 }

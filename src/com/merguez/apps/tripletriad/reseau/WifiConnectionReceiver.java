@@ -25,7 +25,7 @@ import android.util.Log;
  */
 public class WifiConnectionReceiver implements Runnable
 {
-	private WifiConnection wc;
+	/*private WifiConnection wc;
 	private ObjectInputStream ois;
 	private Socket socket;
 	
@@ -54,10 +54,10 @@ public class WifiConnectionReceiver implements Runnable
 				e.printStackTrace();
 			}
 	}
-	
+	*/
 	public void run() 
 	{
-		while (ois != null && socket.isConnected())
+		/*while (ois != null && socket.isConnected())
 		{
 			String messageReceived;
 			try 
@@ -75,6 +75,6 @@ public class WifiConnectionReceiver implements Runnable
 			{
 				e.printStackTrace();
 			}
-		}
+		}*/
 	}
 }

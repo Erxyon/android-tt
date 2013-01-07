@@ -13,7 +13,7 @@ public class ListeCartes {
 	
 	public void listeDesCartes() {
 		
-		Context context;
+		Context context = null;
 		// je supppose que le nom n'a pas de majuscules ?
 		/*
 		 * La question est pas conne, parce que le nom de la carte affiché a une majuscule et peut-être des accents/espaces/virgules,
@@ -61,14 +61,14 @@ public class ListeCartes {
 		defaut.add(new Card(context,"Diodon", 7, 3, 1, 2, 5, Element.EARTH)); // mettre 10 si A
 		defaut.add(new Card(context,"Doublure", 7, 8, 4, 5, 4, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Draconus", 7, 3, 6, 3, 7, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"Dcorche", 7, 1, 3, 8, 8, Element.POISON)); // mettre 10 si A
+		defaut.add(new Card(context,"Ecorche", 7, 1, 3, 8, 8, Element.POISON)); // mettre 10 si A
 		defaut.add(new Card(context,"Edéa", 7, 10, 3, 3, 10, Element.NONE)); // mettre 10 si A
 		// c'est tout, pour le moment.
-		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Eiffel", 7, 2, 7, 6, 3, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Ekarissor", 7, 6, 5, 5, 6, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Elastos", 7, 1, 1, 4, 5, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Elite", 7, 3, 7, 1, 3, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Ellone", 7, 9, 8, 10, 2, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Levrikon", 7, 1, 4, 2, 4, Element.NONE)); // mettre 10 si A

@@ -19,7 +19,7 @@ import com.merguez.apps.tripletriad.cards.Card;
  */
 public class BotHard implements iBot
 {
-	public static final int MAX = 10;
+	/*public static final int MAX = 10;
 	public static final int MIN = -10;
 	
 	private int ME, HIM;
@@ -203,5 +203,5 @@ public class BotHard implements iBot
 	@Override
 	public int getPlayerValue() {
 		return ME;
-	}
+	}*/
 }

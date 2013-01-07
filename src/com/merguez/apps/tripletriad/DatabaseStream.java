@@ -34,6 +34,7 @@ import com.merguez.apps.tripletriad.cards.Card;
  */
 public class DatabaseStream 
 {
+	/*
 	private SQLiteConnector connector;
 	private SQLiteDatabase stream;
 	private Context context;
@@ -338,20 +339,6 @@ public class DatabaseStream
 		}
 	}
 	
-	/*public int getGils()
-	{
-		SharedPreferences lastSettings = context.getSharedPreferences("TripleTriad", Context.MODE_PRIVATE);
-		int gils = lastSettings.getInt("Gils", 0);
-		return gils;
-	}
-	
-	public void setGils(int gils)
-	{
-		SharedPreferences lastSettings = context.getSharedPreferences("TripleTriad", Context.MODE_PRIVATE);
-		Editor editor = lastSettings.edit();
-		editor.putInt("Gils", gils);
-		editor.apply();
-	}*/
 	
 	// Distribue les cartes au début
 	public void initCards() 
@@ -409,11 +396,11 @@ class SQLiteConnector extends SQLiteOpenHelper
 		}
 		db.execSQL("CREATE TABLE Cards (Name TEXT NOT NULL, Episode INTEGER NOT NULL, Level INTEGER NOT NULL, TopValue TEXT NOT NULL, LeftValue TEXT NOT NULL, BotValue TEXT NOT NULL, RightValue TEXT NOT NULL, Element TEXT NOT NULL, PRIMARY KEY (Name, Episode))");
 		
-		/*caca*/
 	}
 	
 	public void close()
 	{
 		super.close();
 	}
+	*/
 }

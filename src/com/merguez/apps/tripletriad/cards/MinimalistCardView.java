@@ -29,6 +29,7 @@ import android.widget.ImageView;
 @SuppressLint("ViewConstructor")
 public class MinimalistCardView extends ImageView
 {
+	/*
 	private static final int PAINT_SIZE = 15;
 	private static final int PAINT_COLOR = 0xff000000;
 	private static final int SHADOW_COLOR = 0xffffffff;
@@ -41,17 +42,18 @@ public class MinimalistCardView extends ImageView
 	private boolean isChecked = false;
     
     private boolean showNumber;
-    
+    */
 	public MinimalistCardView(Context context, Bitmap picture, Card card, boolean showNumber)
 	{
 		super(context);
+		/*
 		this.card = card;
 		this.showNumber = showNumber;
 		
 		initPaint();
-		setImage(picture);
+		setImage(picture);*/
 	}
-	
+	/*
 	public MinimalistCardView(Context context, AttributeSet attrs)
 	{
 		super(context, attrs);
@@ -207,4 +209,5 @@ public class MinimalistCardView extends ImageView
 		paint.setShadowLayer(SHADOW_RADIUS, -SHADOW_OFFSET, -SHADOW_OFFSET, SHADOW_COLOR);
 		canvas.drawText(number, blueFace.getWidth() - taillePinceau, blueFace.getHeight() - (taillePinceau / 2), paint);
 	}
+	*/
 }

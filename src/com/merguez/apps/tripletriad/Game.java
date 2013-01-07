@@ -45,6 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 public class Game extends Activity implements EventFiredListener
 {
+	/*
 	public static final int NOONE = Engine.NOONE;
 	public static final int PLAYER = Engine.PLAYER;
 	public static final int OPPONENT = Engine.OPPONENT;
@@ -193,7 +194,7 @@ public class Game extends Activity implements EventFiredListener
 		}
 	}
 
-	/** Create a deck with random cards */
+	// Create a deck with random cards
 	private Card[] getRandomDeck(int player)
 	{
 		int howMuch = (Engine.BOARD_SIZE + 1) / 2;
@@ -216,7 +217,7 @@ public class Game extends Activity implements EventFiredListener
 		return deck;
 	}
 	
-	/** Display player's cards (left of the screen if player == 1, else at right of the screen) */
+	//Display player's cards (left of the screen if player == 1, else at right of the screen)
 	private void showDeck(int player, Card[] deck)
     {    	
     	FrameLayout fl = (FrameLayout) findViewById(R.id.cardsLayout);    	
@@ -820,5 +821,6 @@ public class Game extends Activity implements EventFiredListener
 			}
 		});
 	}
+	*/
 
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.merguez.apps.tripletriad.cards.Card;
 
 public class MinMaxEngine {
-	private Card[] board;
+	/*private Card[] board;
 	private String[] elements;
 	private int cardOnBoard;
 	private boolean ruleSame, rulePlus, ruleSameWall, ruleCombo, ruleElementary, rulePlusWall;
@@ -312,5 +312,5 @@ public class MinMaxEngine {
 		else {
 			card.malusElementaire(true);
 		}
-	}
+	}*/
 }

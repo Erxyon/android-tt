@@ -19,9 +19,9 @@ import com.merguez.apps.tripletriad.Engine;
  */
 public interface iReseau 
 {
-	public void send(String s);
+	/*public void send(String s);
 	public void fireSomethingReceived(String msg);
 	public void fireOtherPlayerConnected();
 	public void fireErrorOccured();
-	public void addNetworkListener(Engine nl);
+	public void addNetworkListener(Engine nl);*/
 }

@@ -34,6 +34,7 @@ import com.merguez.apps.tripletriad.R;
  */
 public class Engine
 {
+	/*
 	public static final int NOONE = 0;
 	public static final int PLAYER = 1;
 	public static final int OPPONENT = 2;
@@ -865,4 +866,5 @@ public class Engine
 			card.malusElementaire();
 		}
 	}
+	*/
 }

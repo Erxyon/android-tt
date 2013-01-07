@@ -31,7 +31,7 @@ import com.merguez.apps.tripletriad.R;
  */
 public class MainMenu extends Activity implements OnClickListener
 {
-	private Typeface typeface;
+	/*private Typeface typeface;
 	
 	public void onCreate(Bundle savedInstanceState) 
     {
@@ -68,9 +68,10 @@ public class MainMenu extends Activity implements OnClickListener
 		menu.setOnClickListener(this);
 		//menu.setTypeface(typeface);
 	}
-
+*/
 	@Override
 	public void onClick(View v) {
+		/*
 		int id = v.getId();
 		Intent i = new Intent(this, Game.class);
 		
@@ -93,5 +94,7 @@ public class MainMenu extends Activity implements OnClickListener
 			startActivity(i);
 			break;
 		}
+		*/
 	}
+	
 }

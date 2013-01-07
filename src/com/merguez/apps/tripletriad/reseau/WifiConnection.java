@@ -28,7 +28,7 @@ import com.merguez.apps.tripletriad.Engine;
  */
 public class WifiConnection implements iReseau, Runnable
 {
-	public int timeToAcceptClientConnection;
+	/*public int timeToAcceptClientConnection;
 	private int listeningPort;
 	private boolean isHost;
 	private String serverIpAdress;
@@ -165,10 +165,10 @@ public class WifiConnection implements iReseau, Runnable
 			send(query);
 		}
 	}
-
+*/
 	public void run() 
 	{
-		try 
+		/*try 
 		{
 			if (isHost)
 			{
@@ -184,6 +184,7 @@ public class WifiConnection implements iReseau, Runnable
 			e.printStackTrace();
 			fireErrorOccured();
 		}
-		while (socket != null && socket.isConnected()) { }
+		while (socket != null && socket.isConnected()) { }*/
 	}
+	
 }

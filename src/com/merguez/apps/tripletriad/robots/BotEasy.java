@@ -22,7 +22,7 @@ import com.merguez.apps.tripletriad.cards.Card;
  */
 public class BotEasy implements iBot
 {
-	public int ME;
+	/*public int ME;
 	
 	private Card[] deck, board;
 	private String[] elements;
@@ -431,5 +431,5 @@ public class BotEasy implements iBot
 		}
 		
 		return gain.size();
-	}
+	}*/
 }

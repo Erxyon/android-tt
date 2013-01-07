@@ -26,13 +26,13 @@ import android.widget.ImageView;
  */
 public class HandView extends ImageView
 {
-	private Bitmap handPicture;
-	private int currentPlayer, posx, posy, screenHeight, screenWidth;
+	//private Bitmap handPicture;
+	//private int currentPlayer, posx, posy, screenHeight, screenWidth;
 	
 	public HandView(Context context, int currentPlayer, int screenWidth, int screenHeight) 
 	{
 		super(context);
-		this.currentPlayer = currentPlayer;
+		/*this.currentPlayer = currentPlayer;
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;
 		
@@ -52,9 +52,9 @@ public class HandView extends ImageView
 		{
 			posx = (screenWidth / 8) - (handPicture.getWidth() / 2);
 			posy = screenHeight - handPicture.getHeight();
-		}
+		}*/
 	}
-	
+	/*
 	public void swapPlayer()
 	{
 		if (currentPlayer == Engine.PLAYER)
@@ -79,5 +79,5 @@ public class HandView extends ImageView
 	protected void onDraw(Canvas canvas) 
 	{
 		canvas.drawBitmap(handPicture, posx, posy, null);
-	}
+	}*/
 }
