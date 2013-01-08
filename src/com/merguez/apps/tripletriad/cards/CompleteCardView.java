@@ -8,6 +8,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -134,26 +135,35 @@ public class CompleteCardView extends ImageView
 	
 	public void resizePictures(int x, int y)
 	{
+		Log.d("pipidechat : ", card.getName());
 		card.setBlueFace(resize(card.getBlueFace(), x, y));
 		card.setRedFace(resize(card.getRedFace(), x, y));
 		card.setBackFace(resize(card.getBackFace(), x, y));
 		
 		taillePinceau = y / 5;
 		paint.setTextSize(taillePinceau);
+		
 	}
 	
 	private Bitmap resize(Bitmap bm, int x, int y)
 	{
 		int width = bm.getWidth();
+		Log.d("w", "width"+width);
 		int height = bm.getHeight();
+		Log.d("h", "height"+height);
 		int newWidth = x;
+		Log.d("w", "newwidth"+x);
 		int newHeight = y;
+		Log.d("h", "newh"+y);
 		float scaleWidth = ((float) newWidth) / width;
+		Log.d("scalew", "scal"+scaleWidth);
 		float scaleHeight = ((float) newHeight) / height;
+		Log.d("scaleh", "scal"+scaleHeight);
 		
 		Matrix matrix = new Matrix();
 		matrix.postScale(scaleWidth, scaleHeight);
 		Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, true);
+		Log.d("resized bitmap", "resized"+resizedBitmap);
 
 		return resizedBitmap;
 	}

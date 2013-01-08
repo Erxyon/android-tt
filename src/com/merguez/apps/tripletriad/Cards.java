@@ -15,12 +15,16 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.merguez.apps.tripletriad.cards.Card;
 import com.merguez.apps.tripletriad.cards.CompleteCardView;
@@ -33,80 +37,43 @@ public class Cards extends Activity
     
 	private ViewPager myCards;
 	private Typeface typeface;
-	private LinearLayout mainLayout;
+	private GridView gridview;
 	private Context context;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		ListeCartes.listeDesCartes(this);
-        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.cards);
+		
+	    super.onCreate(savedInstanceState);
+	    setContentView(R.layout.cards);
+
+	    gridview = (GridView) findViewById(R.id.grid_cards);
+	    gridview.setAdapter(new CardAdapter(this));
+
+	    gridview.setOnItemClickListener(new OnItemClickListener() {
+	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+	            Toast.makeText(Cards.this, "" + position, Toast.LENGTH_SHORT).show();
+	        }
+	    });
+
         context = this;
 		
-        
-        mainLayout = (LinearLayout) findViewById(R.id.mainLayout);
-        MyCardsAdapter myCardsAdapter = new MyCardsAdapter();
-        myCards = (ViewPager) findViewById(R.id.cards);
-        myCards.setAdapter(myCardsAdapter);
-        myCards.setOnPageChangeListener(myCardsLevelChangePageListener);
+		
+		
+        //getWindow().requestFeature(Window.FEATURE_NO_TITLE);
+		
 	}
 	
-	private OnPageChangeListener myCardsLevelChangePageListener = new OnPageChangeListener() {
-		
-		@Override
-		public void onPageSelected(int position) {
-			//levelMyCards.setText(getString(R.string.cards_level) + " " + String.valueOf(10 - position));
-		}
-		
-		@Override
-		public void onPageScrolled(int arg0, float arg1, int arg2) {
-			
-		}
-		
-		@Override
-		public void onPageScrollStateChanged(int arg0) {
-			
-		}
-	};
-	
-	
-
-	class MyCardsAdapter extends PagerAdapter {
-		@Override
-		public int getCount() {
-			return NUM_VIEWS;
-		}
-	
-		@Override
-		public boolean isViewFromObject(View view, Object object) {
-			return view == ((GridView) object);
-		}      
-		  
-		@Override  
-		public Object instantiateItem(View collection, int position) {  
-			View v = getLayoutInflater().inflate(R.layout.grid, null);
-			GridView grid = (GridView) v.findViewById(R.id.grid);
-
-			grid.setAdapter(new CardAdapter(ListeCartes.defaut));
-			
-			((ViewPager) collection).addView(grid,0);
-			return grid;
-		}  
-		  
-		@Override  
-		public void destroyItem(View collection, int position, Object view){  
-			((ViewPager) collection).removeView((GridView) view);
-		} 
-	}
 	
 	class CardAdapter extends BaseAdapter
 	{	
 	    private ArrayList<Card> mThumbIds;
+	    private Context context;
 
-	    public CardAdapter(ArrayList<Card> cards) 
+	    public CardAdapter(Context context) 
 	    {
-	        mThumbIds = cards;
+	    	this.context = context;
+	    	ListeCartes.listeDesCartes(context);
+	    	mThumbIds = ListeCartes.defaut;
 	    }
 
 		public int getCount() 
@@ -126,27 +93,25 @@ public class Cards extends Activity
 
 		public View getView(int position, View convertView, ViewGroup parent) 
 	    {
-	        View v;
 	        CompleteCardView cv;
 	        
 	        if(convertView == null)
 	        {
-                LayoutInflater li = ((Activity) context).getLayoutInflater();
-                v = li.inflate(R.layout.icon, null); 
+	        	cv = new CompleteCardView(context);
+	        	cv.setLayoutParams(new GridView.LayoutParams(85, 85));
+	            cv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+	            cv.setPadding(8, 8, 8, 8);
+	            
 	        }
 	        else
 	        {
-                v = convertView;
-	        }
-	        v.setPadding(5, 5, 5, 5);	   
+                cv = (CompleteCardView) convertView;
+	        }	   
 	        
 	        Card card = mThumbIds.get(position);
-	        cv = (CompleteCardView) v.findViewById(R.id.icon_image);
 	        cv.setCard(card);
-//	        cv.setOnClickListener((OnClickListener) context);
-	        cv.resizePictures(mainLayout.getWidth() / 8, mainLayout.getHeight() / 4);
-	        v.requestLayout();
-	        return v;
+	        cv.resizePictures(50, 50);
+	        return cv;
 	    }
 	}
 }

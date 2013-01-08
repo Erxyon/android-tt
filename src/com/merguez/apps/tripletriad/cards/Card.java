@@ -1,10 +1,12 @@
 package com.merguez.apps.tripletriad.cards;
 
 import java.io.IOException;
+import java.text.Normalizer;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 import com.merguez.apps.tripletriad.Engine;
 
@@ -71,15 +73,36 @@ public class Card
 		/*
 		 * A deplacer dans la view
 		 */
+		
+		this.name = this.name.toLowerCase();
+		
+		this.name = this.name.replaceAll("[^\\w!#$Ä%&'`(),;:/@]", "_");
+		this.name = this.name.replaceAll("[‡‚‰ƒ¿¬]", "a");
+		this.name = this.name.replaceAll("[ÈËÍÎ» À]", "e");
+		this.name = this.name.replaceAll("[ÏÓÔÃœŒ]", "i");
+		this.name = this.name.replaceAll("[ÚˆÙ“÷‘]", "o");
+		this.name = this.name.replaceAll("[˘¸˚Ÿ‹€]", "u");
+		this.name = this.name.replace("Á", "c");
+		
 		try 
 		{
 			blueFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(this.name + "_bleue.jpg"));
-			redFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(this.name + "_rouge.jpg"));
-			// j'ai corrigÈ le .bleu/rouge en _rouge/bleu
+		/*	Log.d("blueface :", "kikoo "+blueFace);
+			Log.d("blueface :", "height "+blueFace.getHeight());
+			Log.d("blueface :", "width "+blueFace.getWidth());
+			*/redFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(this.name + "_rouge.jpg"));
+			/*Log.d("red :", "kikoo "+redFace);
+			Log.d("red : :", "height "+redFace.getHeight());
+			Log.d("red : :", "width "+redFace.getWidth());
+			*/
 			backFace = BitmapFactory.decodeStream(context.getResources().getAssets().open("back.png"));	
+			/*Log.d("bzck :", "kikoo "+backFace);
+			Log.d("back : :", "height "+backFace.getHeight());
+			Log.d("back : :", "width "+backFace.getWidth());*/
 		} 
 		catch (IOException e) 
 		{
+			Log.d("MERGUEZ", "plantage"+this.name);
 			e.printStackTrace();
 		}
 		
