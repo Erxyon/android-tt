@@ -76,7 +76,7 @@ public class Card
 		
 		this.name = this.name.toLowerCase();
 		
-		this.name = this.name.replaceAll("[^\\w!#$А%&'`(),;:/@]", "_");
+		this.name = this.name.replaceAll("[^\\w!#$А%&'`(),;:/@] ", "_");
 		this.name = this.name.replaceAll("[авдƒј¬]", "a");
 		this.name = this.name.replaceAll("[йикл» Ћ]", "e");
 		this.name = this.name.replaceAll("[мопћѕќ]", "i");
