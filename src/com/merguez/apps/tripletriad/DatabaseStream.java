@@ -16,7 +16,29 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.merguez.apps.tripletriad.cards.Card;
-
+import com.merguez.apps.tripletriad.cards.Card.Element;
+// ULTRA GIGA COMMENTAIRE
+/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * HASHMAP PUTAIN DE SA RACE BOULBA DE SA MAMAN LA CHIENNE
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 /*  Copyright (C) <2011-2012>  <Florian et Guillaume>
 
     This program is free software: you can redistribute it and/or modify
@@ -34,7 +56,7 @@ import com.merguez.apps.tripletriad.cards.Card;
  */
 public class DatabaseStream 
 {
-	/*
+	
 	private SQLiteConnector connector;
 	private SQLiteDatabase stream;
 	private Context context;
@@ -45,63 +67,28 @@ public class DatabaseStream
 		connector = new SQLiteConnector(context, "TripleTriad", 10);
 		stream = connector.getWritableDatabase();
 	}
-	
+	/*
+	// si on est mauvais et qu'on a perdu toutes nos cartes dès le début.
 	public void reinitCards()
 	{
 		stream.delete("MyCards", null, null);
 		initCards();
 	}
-	
-	// cheat
-	public void unlockAllCards()
-	{
-		for (Card c : getAllCards())
-		{
-			nouvelleCarte(c.getFullName());
-		}
-	}
-	
+	*/	
 	public Card getCard(Cursor cursor) {
 		
 		String name = cursor.getString(cursor.getColumnIndex("Name"));
 		int level = cursor.getInt(cursor.getColumnIndex("Level"));
-		String top = cursor.getString(cursor.getColumnIndex("TopValue"));
-		String left = cursor.getString(cursor.getColumnIndex("LeftValue"));
-		String bot = cursor.getString(cursor.getColumnIndex("BotValue"));
-		String right = cursor.getString(cursor.getColumnIndex("RightValue"));
+		int top = cursor.getInt(cursor.getColumnIndex("TopValue"));
+		int left = cursor.getInt(cursor.getColumnIndex("LeftValue"));
+		int bot = cursor.getInt(cursor.getColumnIndex("BotValue"));
+		int right = cursor.getInt(cursor.getColumnIndex("RightValue"));
 		String element = cursor.getString(cursor.getColumnIndex("Element"));
 		
-		String fullName = name;
-		Bitmap blue = null, red = null, back = null;
-		try 
-		{
-			blue = BitmapFactory.decodeStream(context.getResources().getAssets().open(fullName + ".bleue.jpg"));
-			red = BitmapFactory.decodeStream(context.getResources().getAssets().open(fullName + ".rouge.jpg"));
-			back = BitmapFactory.decodeStream(context.getResources().getAssets().open("back.png"));	
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		
-		Card card = new Card(name, level, top, left, bot, right, element, 1, blue, red, back);
+		Card card = new Card(context, name, level, top, left, bot, right, Element.valueOf(element));
 		return card;
 	}
 	
-	public Card getCard(String cardFullName)
-	{
-		Card card = null;
-		String name = cardFullName;
-		
-		
-		Cursor result = stream.query("Cards", null, "Name LIKE \"" + name, null, null, null, null);
-		if (result != null && result.move(1)) {
-			card = getCard(result);
-		}
-		result.close();
-		
-		return card;
-	}
 	
 	public void close()
 	{
@@ -109,7 +96,7 @@ public class DatabaseStream
 		stream.close();
 	}
 
-	public void nouvelleCarte(String cardFullName) 
+	/*public void nouvelleCarte(String cardFullName) 
 	{
 		Cursor result = stream.query("MyCards", null, "CardName LIKE \"" + cardFullName + "\"", null, null, null, "CardName ASC");
 		
@@ -369,7 +356,7 @@ public class DatabaseStream
 
 	
 }
-
+*/
 class SQLiteConnector extends SQLiteOpenHelper 
 {
 	public SQLiteConnector(Context context, String databaseName, int databaseVersion)
@@ -380,6 +367,7 @@ class SQLiteConnector extends SQLiteOpenHelper
 	public void onCreate(SQLiteDatabase db) 
 	{
 		createDBs(db, false);
+		db.execSQL("CREATE TABLE Cartes (Identifiant INTEGER NOT NULL, Nom TEXT NOT NULL, Nombre INTEGER NOT NULL, PRIMARY KEY (Identifiant) )");
 	}
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
@@ -392,7 +380,7 @@ class SQLiteConnector extends SQLiteOpenHelper
 	{
 		if (!upgrade) 
 		{
-			db.execSQL("CREATE TABLE MyCards (CardName TEXT NOT NULL, Number INTEGER NOT NULL, PRIMARY KEY (CardName))");
+		
 		}
 		db.execSQL("CREATE TABLE Cards (Name TEXT NOT NULL, Episode INTEGER NOT NULL, Level INTEGER NOT NULL, TopValue TEXT NOT NULL, LeftValue TEXT NOT NULL, BotValue TEXT NOT NULL, RightValue TEXT NOT NULL, Element TEXT NOT NULL, PRIMARY KEY (Name, Episode))");
 		
@@ -402,5 +390,5 @@ class SQLiteConnector extends SQLiteOpenHelper
 	{
 		super.close();
 	}
-	*/
-}
+	
+}}

@@ -42,6 +42,50 @@ public class ListeCartes {
 		// ok tête de cul
 		defaut.add(new Card(context,"Acron", 7, 8, 8, 2, 5, Element.THUNDER)); // mettre 10 si A
 		defaut.add(new Card(context,"Adel", 7, 1, 8, 9, 10, Element.NONE)); // mettre 10 si A
+		/*
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * HASH MAP defaut.put(89, new Card(...));
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
 		defaut.add(new Card(context,"Adephage", 7, 3, 5, 5, 5, Element.POISON)); // mettre 10 si A
 		defaut.add(new Card(context,"Agamemnon", 7, 5, 8, 6, 6, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Ahuri", 7, 8, 4, 10, 4, Element.NONE)); // mettre 10 si A
