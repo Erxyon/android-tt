@@ -39,6 +39,7 @@ public class Cards extends Activity
 	private Typeface typeface;
 	private GridView gridview;
 	private Context context;
+	private CardAdapter adapter;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +48,12 @@ public class Cards extends Activity
 	    setContentView(R.layout.cards);
 
 	    gridview = (GridView) findViewById(R.id.grid_cards);
-	    gridview.setAdapter(new CardAdapter(this));
+	    adapter = new CardAdapter(this);
+	    gridview.setAdapter(adapter);
 
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	            Toast.makeText(Cards.this, "" + position, Toast.LENGTH_SHORT).show();
+	            Toast.makeText(Cards.this, "Nom : " + adapter.mThumbIds.get(position).getName(), Toast.LENGTH_SHORT).show();
 	        }
 	    });
 
@@ -100,7 +102,7 @@ public class Cards extends Activity
 	        	cv = new CompleteCardView(context);
 	        	cv.setLayoutParams(new GridView.LayoutParams(85, 85));
 	            cv.setScaleType(ImageView.ScaleType.CENTER_CROP);
-	            cv.setPadding(8, 8, 8, 8);
+	            cv.setPadding(2, 2, 2, 2);
 	            
 	        }
 	        else
@@ -110,7 +112,7 @@ public class Cards extends Activity
 	        
 	        Card card = mThumbIds.get(position);
 	        cv.setCard(card);
-	        cv.resizePictures(50, 50);
+	        cv.resizePictures(75, 75);
 	        return cv;
 	    }
 	}

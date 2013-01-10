@@ -103,7 +103,7 @@ public class ListeCartes {
 		defaut.add(new Card(context,"Iguanor", 7, 8, 2, 8, 2, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Incube", 7, 2, 4, 1, 3, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Irvine", 7, 2, 10, 9, 6, Element.NONE)); // mettre 10 si A
-		defaut.add(new Card(context,"Ishtar", 7, 9, 6, 8, 2, Element.NONE)); // mettre 10 si A
+		defaut.add(new Card(context,"Isthar", 7, 9, 6, 8, 2, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Jason", 7, 6, 1, 1, 8, Element.ICE)); // mettre 10 si A
 		defaut.add(new Card(context,"Julia", 7, 8, 8, 1, 8, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Kanibal", 7, 3, 7, 5, 6, Element.NONE)); // mettre 10 si A
@@ -159,7 +159,7 @@ public class ListeCartes {
 		defaut.add(new Card(context,"Sulfura", 7, 7, 4, 3, 8, Element.WIND)); // mettre 10 si A
 		defaut.add(new Card(context,"Tauros", 7, 5, 9, 9, 1, Element.EARTH)); // mettre 10 si A
 		defaut.add(new Card(context,"Taurux", 7, 9, 9, 2, 5, Element.EARTH)); // mettre 10 si A
-		defaut.add(new Card(context,"Tikai", 7, 1, 7, 4, 6, Element.THUNDER)); // mettre 10 si A
+		defaut.add(new Card(context,"Tikal", 7, 1, 7, 4, 6, Element.THUNDER)); // mettre 10 si A
 		defaut.add(new Card(context,"Tomberry", 7, 3, 4, 4, 6, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Tomberry sr", 7, 4, 4, 7, 6, Element.NONE)); // mettre 10 si A
 		defaut.add(new Card(context,"Trex", 7, 4, 7, 2, 6, Element.NONE)); // mettre 10 si A
