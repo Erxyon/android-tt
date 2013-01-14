@@ -357,6 +357,16 @@ public class DatabaseStream
 	
 }
 */
+	
+/*
+ * v1
+ * 
+ * Cartes
+ * 		Identifiant int
+ * 		Nom			text
+ * 		Nombre		int
+ * TODO	Niveau		int ???
+ */
 class SQLiteConnector extends SQLiteOpenHelper 
 {
 	public SQLiteConnector(Context context, String databaseName, int databaseVersion)
@@ -366,24 +376,14 @@ class SQLiteConnector extends SQLiteOpenHelper
 	
 	public void onCreate(SQLiteDatabase db) 
 	{
-		createDBs(db, false);
 		db.execSQL("CREATE TABLE Cartes (Identifiant INTEGER NOT NULL, Nom TEXT NOT NULL, Nombre INTEGER NOT NULL, PRIMARY KEY (Identifiant) )");
+		
 	}
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
 	{
-		db.execSQL("DROP TABLE IF EXISTS Cards");
-		createDBs(db, true);
-	}
-	
-	private void createDBs(SQLiteDatabase db, boolean upgrade)
-	{
-		if (!upgrade) 
-		{
-		
-		}
-		db.execSQL("CREATE TABLE Cards (Name TEXT NOT NULL, Episode INTEGER NOT NULL, Level INTEGER NOT NULL, TopValue TEXT NOT NULL, LeftValue TEXT NOT NULL, BotValue TEXT NOT NULL, RightValue TEXT NOT NULL, Element TEXT NOT NULL, PRIMARY KEY (Name, Episode))");
-		
+		db.execSQL("TRUNCATE TABLE my_pages");
+		// En cas de changement dans la structure de la base de données, apporter les modifications ici aussi
 	}
 	
 	public void close()

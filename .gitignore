@@ -17,7 +17,7 @@ local.properties
 
 # Images resources
 # res/drawable*
-assets/*
+#assets/*
 ic_launcher-web.png
 
 Keystore
