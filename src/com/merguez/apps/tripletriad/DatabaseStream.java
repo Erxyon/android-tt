@@ -61,9 +61,11 @@ public class DatabaseStream
 	private SQLiteDatabase stream;
 	private Context context;
 	
+	
 	public DatabaseStream(Context c)
 	{
 		context = c;
+		ListeCartes.listeDesCartes(c);
 		connector = new SQLiteConnector(context, "TripleTriad", 10);
 		stream = connector.getWritableDatabase();
 	}
@@ -77,16 +79,8 @@ public class DatabaseStream
 	*/	
 	public Card getCard(Cursor cursor) {
 		
-		String name = cursor.getString(cursor.getColumnIndex("Name"));
-		int level = cursor.getInt(cursor.getColumnIndex("Level"));
-		int top = cursor.getInt(cursor.getColumnIndex("TopValue"));
-		int left = cursor.getInt(cursor.getColumnIndex("LeftValue"));
-		int bot = cursor.getInt(cursor.getColumnIndex("BotValue"));
-		int right = cursor.getInt(cursor.getColumnIndex("RightValue"));
-		String element = cursor.getString(cursor.getColumnIndex("Element"));
-		
-		Card card = new Card(context, name, level, top, left, bot, right, Element.valueOf(element));
-		return card;
+		int id = cursor.getInt(cursor.getColumnIndex("Identifiant"));
+		return ListeCartes.defaut.get(id);
 	}
 	
 	
@@ -246,7 +240,7 @@ public class DatabaseStream
 	{
 		return getAllCards(-1);
 	}
-
+*/
 	public ArrayList<Card> getMyCards() {
 		return getMyCards(-1);
 	}
@@ -255,47 +249,31 @@ public class DatabaseStream
 	{
 		ArrayList<Card> cards = new ArrayList<Card>();
 		
-		Cursor result = stream.query("MyCards", null, null, null, null, null, "CardName DESC");
-		if (result != null && result.move(1))
-		{
-			do
-			{
-				int cardNameColumn = result.getColumnIndex("CardName");
-				int howMuchColumn = result.getColumnIndex("Number");
-				
-				String fullName = result.getString(cardNameColumn);
-				int howMuch = result.getInt(howMuchColumn);
-				String cardName = fullName.split("/")[1];
-				int episode = Integer.parseInt(fullName.split("/")[0].split("ff")[1]);
-				
-				String selection = "";
-				if (filterByLevel > -1) {
-					selection = " AND Level LIKE " + filterByLevel;
-				}
-				
-				Cursor result2 = stream.query("Cards", null, "Name LIKE \"" + cardName + "\" AND Episode LIKE " + episode + selection, null, null, null, "Name ASC");
-				if (result2 != null && result2.move(1))
-				{
-					Card card = getCard(result2);
-					card.setNumber(howMuch);
-	    			cards.add(card);	    
-	    			result2.close();	    			
-				}
-				if (result2 != null)
-				{
-	    			result2.close();
-				}
-			}
-			while (result.move(1));
+		String argNiveau;
+		if (filterByLevel > 0) {
+			argNiveau = Integer.toString(filterByLevel);
+		} else {
+			argNiveau = "%";
 		}
+		String arguments[] = { argNiveau };
+		Cursor result = stream.query("Cartes", null, "Nombre>0 AND Niveau LIKE ?", arguments, null, null, "Niveau ASC, Identifiant ASC");
+		
 		if (result != null)
 		{
-			result.close();
+			result.moveToFirst(); // deplace a 1e ligne
+			do {
+				
+				cards.add(getCard(result)); //transforme ligne SQL en Card.
+			}//traitement ce que ya de dans
+			
+			while (result.moveToNext()); // tant que ya une ligne après on refait le do
+				
+			
 		}
 		
 		return cards;
 	}
-
+/*
 	public void supprimerCarte(String cardFullName) 
 	{
 		Cursor result = stream.query("MyCards", null, "CardName LIKE \"" + cardFullName + "\"", null, null, null, "CardName ASC");
@@ -358,12 +336,12 @@ public class DatabaseStream
 }
 */
 	
-/*
+/* message a caractere personnel : la mienne est plus grosse que la votre XD
  * v1
  * 
  * Cartes
  * 		Identifiant int
- * 		Nom			text
+ * 		Nom			text tu sers a rien
  * 		Nombre		int
  * TODO	Niveau		int ???
  */
@@ -376,13 +354,38 @@ class SQLiteConnector extends SQLiteOpenHelper
 	
 	public void onCreate(SQLiteDatabase db) 
 	{
-		db.execSQL("CREATE TABLE Cartes (Identifiant INTEGER NOT NULL, Nom TEXT NOT NULL, Nombre INTEGER NOT NULL, PRIMARY KEY (Identifiant) )");
+		db.execSQL("CREATE TABLE Cartes (Identifiant INTEGER NOT NULL, Nombre INTEGER NOT NULL, Niveau INTEGER NOT NULL, Element VARCHAR(10) NOT NULL, PRIMARY KEY (Identifiant) )");
 		
+		
+		int key = 0;
+		for(int i = 0; i < ListeCartes.defaut.size(); i++) {
+			ContentValues cv = new ContentValues();
+			
+			
+			key = ListeCartes.defaut.keyAt(i);
+			// get the object by the key.
+			Card card = ListeCartes.defaut.get(key);
+			
+			//put elements
+			cv.put("Identifiant", key);
+			cv.put("Nombre", 0);
+			cv.put("Niveau", card.getLevel());
+			cv.put("Element", card.element.toString());
+			
+			// insertion dans la database de merde
+			db.insert("Cartes", null, cv);
+			ContentValues cv2 = new ContentValues();
+			cv2.put("Nombre", 1);
+			db.update("Cartes", cv2, "Niveau=1", null);
+			// \o/
+			
+		}
 	}
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
 	{
 		db.execSQL("TRUNCATE TABLE my_pages");
+		
 		// En cas de changement dans la structure de la base de données, apporter les modifications ici aussi
 	}
 	

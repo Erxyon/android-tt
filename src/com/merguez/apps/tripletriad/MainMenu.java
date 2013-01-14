@@ -28,7 +28,7 @@ import com.merguez.apps.tripletriad.R;
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
+ 
 public class MainMenu extends Activity implements OnClickListener
 {
 	private Typeface typeface;
@@ -97,4 +97,4 @@ public class MainMenu extends Activity implements OnClickListener
 		
 	}
 	
-}
+}*/

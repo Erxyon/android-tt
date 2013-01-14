@@ -74,8 +74,9 @@ public class Cards extends Activity
 	    public CardAdapter(Context context) 
 	    {
 	    	this.context = context;
-	    	ListeCartes.listeDesCartes(context);
-	    	mThumbIds = ListeCartes.defaut;
+	    	// a modifier plus tard
+	    	 DatabaseStream dbs = new DatabaseStream(context);
+	    	mThumbIds = dbs.getMyCards();
 	    }
 
 		public int getCount() 
