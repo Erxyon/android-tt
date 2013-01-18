@@ -260,13 +260,14 @@ public class DatabaseStream
 		
 		if (result != null)
 		{
-			result.moveToFirst(); // deplace a 1e ligne
-			do {
+			if (result.moveToFirst()) { // deplace a 1e ligne
+				do {
+					
+					cards.add(getCard(result)); //transforme ligne SQL en Card.
+				}//traitement ce que ya de dans
 				
-				cards.add(getCard(result)); //transforme ligne SQL en Card.
-			}//traitement ce que ya de dans
-			
-			while (result.moveToNext()); // tant que ya une ligne après on refait le do
+				while (result.moveToNext()); // tant que ya une ligne après on refait le do
+			}
 				
 			
 		}
