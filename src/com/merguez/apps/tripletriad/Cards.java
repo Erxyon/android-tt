@@ -48,7 +48,7 @@ public class Cards extends Activity
 	    setContentView(R.layout.cards);
 
 	    gridview = (GridView) findViewById(R.id.grid_cards);
-	    adapter = new CardAdapter(this);
+	    adapter = new CardAdapter(this, 1);
 	    gridview.setAdapter(adapter);
 
 	    gridview.setOnItemClickListener(new OnItemClickListener() {
@@ -71,12 +71,17 @@ public class Cards extends Activity
 	    private ArrayList<Card> mThumbIds;
 	    private Context context;
 
-	    public CardAdapter(Context context) 
+	    public CardAdapter(Context context, int niveau) 
 	    {
 	    	this.context = context;
 	    	// a modifier plus tard
 	    	 DatabaseStream dbs = new DatabaseStream(context);
-	    	mThumbIds = dbs.getMyCards();
+	    	mThumbIds = dbs.getMyCards(niveau);
+	    	/*
+	    	 *  http://stackoverflow.com/questions/5894043/dynamically-adding-grid-items-in-grid-view
+ http://stackoverflow.com/questions/7793465/can-i-add-gridview-inside-a-listview-item
+ http://developer.android.com/reference/android/app/ListActivity.html
+	    	 */
 	    }
 
 		public int getCount() 
