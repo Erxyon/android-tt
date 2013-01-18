@@ -66,7 +66,7 @@ public class DatabaseStream
 	{
 		context = c;
 		ListeCartes.listeDesCartes(c);
-		connector = new SQLiteConnector(context, "TripleTriad", 10);
+		connector = new SQLiteConnector(context, "TripleTriad", 12);
 		stream = connector.getWritableDatabase();
 	}
 	/*
@@ -377,7 +377,7 @@ class SQLiteConnector extends SQLiteOpenHelper
 			db.insert("Cartes", null, cv);
 			ContentValues cv2 = new ContentValues();
 			cv2.put("Nombre", 1);
-			db.update("Cartes", cv2, "Niveau=1", null);
+			db.update("Cartes", cv2, null, null);
 			// \o/
 			
 		}
@@ -385,7 +385,9 @@ class SQLiteConnector extends SQLiteOpenHelper
 
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
 	{
-		db.execSQL("TRUNCATE TABLE my_pages");
+		// TODO A enlever
+		db.execSQL("DROP TABLE Cartes");
+		onCreate(db);
 		
 		// En cas de changement dans la structure de la base de données, apporter les modifications ici aussi
 	}
