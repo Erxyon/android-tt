@@ -66,7 +66,7 @@ public class DatabaseStream
 	{
 		context = c;
 		ListeCartes.listeDesCartes(c);
-		connector = new SQLiteConnector(context, "TripleTriad", 12);
+		connector = new SQLiteConnector(context, "TripleTriad", 13);
 		stream = connector.getWritableDatabase();
 	}
 	/*
