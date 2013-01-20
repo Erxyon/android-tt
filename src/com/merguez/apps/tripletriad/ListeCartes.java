@@ -30,6 +30,7 @@ public class ListeCartes {
 		defaut.put(10, new Card(context,"Angel", 1, 9, 3, 6, 7, Element.NONE)); // mettre 10 si A
 		defaut.put(11, new Card(context,"Ao", 2, 4, 6, 5, 5, Element.NONE)); // mettre 10 si A
 		defaut.put(12, new Card(context,"Aphide", 2, 2, 4, 4, 1, Element.THUNDER)); // mettre 10 si A
+
 		defaut.put(13, new Card(context,"Arconada", 2, 5, 5, 3, 1, Element.NONE)); // mettre 10 si A
 		defaut.put(14, new Card(context,"Attila", 2, 6, 7, 4, 8, Element.NONE)); // mettre 10 si A
 		defaut.put(15, new Card(context,"Bahamut", 2, 10, 6, 2, 8, Element.NONE)); // mettre 10 si A
@@ -49,6 +50,7 @@ public class ListeCartes {
 		defaut.put(29, new Card(context,"Draconus", 3, 3, 6, 3, 7, Element.NONE)); // mettre 10 si A
 		defaut.put(30, new Card(context,"Ecorche", 3, 1, 3, 8, 8, Element.POISON)); // mettre 10 si A
 		defaut.put(31, new Card(context,"Edéa", 3, 10, 3, 3, 10, Element.NONE)); // mettre 10 si A
+
 		// c'est tout, pour le moment. Voilà :)
 		defaut.put(32, new Card(context,"Eiffel", 3, 2, 7, 6, 3, Element.NONE)); // mettre 10 si A
 		defaut.put(33, new Card(context,"Ekarissor", 3, 6, 5, 5, 6, Element.NONE)); // mettre 10 si A

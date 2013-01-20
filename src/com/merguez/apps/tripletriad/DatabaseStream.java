@@ -67,7 +67,9 @@ public class DatabaseStream
 	{
 		context = c;
 		ListeCartes.listeDesCartes(c);
+
 		connector = new SQLiteConnector(context, "TripleTriad", 14);
+
 		stream = connector.getWritableDatabase();
 	}
 	/*
@@ -382,6 +384,7 @@ class SQLiteConnector extends SQLiteOpenHelper
 			db.insert("Cartes", null, cv);
 			ContentValues cv2 = new ContentValues();
 			cv2.put("Nombre", 1);
+
 			db.update("Cartes", cv2, "Niveau < 3", null);
 			// \o/
 			
