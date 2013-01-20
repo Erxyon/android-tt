@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,8 +42,10 @@ public class Cards extends ListActivity
 		listeCartes = new ArrayList<Object>();
 
 		DatabaseStream dbs = new DatabaseStream(context);
+		dbs.load();
+		
 		for (int i=1; i<=10; i++) {
-			ArrayList<Card> cartes = dbs.getMyCards(i);
+			ArrayList<Card> cartes = dbs.getAllCards(i);
 			
 			listeCartes.add("Niveau "+i);
 			listeCartes.addAll(cartes);
@@ -53,7 +56,7 @@ public class Cards extends ListActivity
 		setListAdapter(adapter);
 		getListView().setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				if (v instanceof CompleteCardView) {
+				if (!(v instanceof TextView)) {
 					Card carte = (Card) adapter.mThumbIds.get(position);
 					Toast.makeText(Cards.this, "Nom : " + carte.getName(), Toast.LENGTH_SHORT).show();
 				}
@@ -172,26 +175,52 @@ public class Cards extends ListActivity
 				return text;
 			}
 			else {
+				View view;
 				CompleteCardView cv;
 	
 				if(convertView == null)
 				{
-					cv = new CompleteCardView(context);
-					cv.setLayoutParams(new GridView.LayoutParams(85, 85));
-					cv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+					
+			        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+			        view = inflater.inflate(R.layout.affichage_carte, parent, false);
+			       
+			        
+			        cv = (CompleteCardView) view.findViewById(R.id.carte);
+					//cv = new CompleteCardView(context);
+			        //view.setLayoutParams(new LinearLayout.LayoutParams(85, 85));
+					cv.setScaleType(ImageView.ScaleType.FIT_XY);
 					cv.setPadding(2, 2, 2, 2);
 	
 				}
 				else
 				{
-					cv = (CompleteCardView) convertView;
+					view = convertView;
 				}	   
 
 				Card card = (Card) mThumbIds.get(position);
+		        cv = (CompleteCardView) view.findViewById(R.id.carte);
 				cv.setCard(card);
+				TextView nomCarte = (TextView) view.findViewById(R.id.nomCarte);
+				TextView texteNombre = (TextView) view.findViewById(R.id.nombre);
 
-				cv.resizePictures(75, 75);
-				return cv;
+				int nombre = 0;
+				if (DatabaseStream.nombreCartes.indexOfKey(card.id) >= 0) {
+					nombre = DatabaseStream.nombreCartes.get(card.id);
+				}
+				
+
+				nomCarte.setText(card.getName());
+				if (nombre ==0 ) {
+					texteNombre.setText("0");
+					texteNombre.setEnabled(false);
+					nomCarte.setEnabled(false);
+				}
+				else {
+					texteNombre.setText(Integer.toString(nombre));
+				}
+
+				//cv.resizePictures(75, 75);
+				return view;
 			}
 		}
 	}

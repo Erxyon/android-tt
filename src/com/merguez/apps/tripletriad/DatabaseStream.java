@@ -14,6 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.SparseArray;
 
 import com.merguez.apps.tripletriad.cards.Card;
 import com.merguez.apps.tripletriad.cards.Card.Element;
@@ -66,7 +67,7 @@ public class DatabaseStream
 	{
 		context = c;
 		ListeCartes.listeDesCartes(c);
-		connector = new SQLiteConnector(context, "TripleTriad", 13);
+		connector = new SQLiteConnector(context, "TripleTriad", 14);
 		stream = connector.getWritableDatabase();
 	}
 	/*
@@ -80,7 +81,37 @@ public class DatabaseStream
 	public Card getCard(Cursor cursor) {
 		
 		int id = cursor.getInt(cursor.getColumnIndex("Identifiant"));
-		return ListeCartes.defaut.get(id);
+		Card carte = ListeCartes.defaut.get(id);
+		carte.id = id;
+		return carte;
+	}
+	
+	public static SparseArray<Integer> nombreCartes = new SparseArray<Integer>();
+	// idCarte => nombre
+	
+	public void load(){
+		
+		nombreCartes.clear();
+		
+		Cursor result = stream.query("Cartes", null, "Nombre > 0", null, null, null, "Niveau ASC, Identifiant ASC");
+		
+		if (result != null)
+		{
+			if (result.moveToFirst()) { // deplace a 1e ligne
+				do {
+
+					int id = result.getInt(result.getColumnIndex("Identifiant"));
+					int nombrecartes = result.getInt(result.getColumnIndex("Nombre"));
+					this.nombreCartes.put(id, nombrecartes);
+					
+				}//traitement ce que ya de dans
+				
+				while (result.moveToNext()); // tant que ya une ligne après on refait le do
+			}
+				
+			
+		}
+		
 	}
 	
 	
@@ -213,39 +244,13 @@ public class DatabaseStream
 		return cards;
 	}
 	
-	public ArrayList<Card> getAllCards(int filterByLevel)
-	{
-		ArrayList<Card> cards = new ArrayList<Card>();
-		
-		String selection = null;
-		if (filterByLevel > -1) {
-			selection = "Level LIKE " + filterByLevel;
-		}
-		
-		Cursor result = stream.query("Cards", null, selection, null, null, null, "Level ASC");
-		if (result != null)
-		{
-			while (result.move(1))
-			{
-				Card card = getCard(result);
-				cards.add(card);
-			}
-		}
-		result.close();
-		
-		return cards;
-	}
 	
-	public ArrayList<Card> getAllCards()
-	{
+*/
+	public ArrayList<Card> getAllCards() {
 		return getAllCards(-1);
 	}
-*/
-	public ArrayList<Card> getMyCards() {
-		return getMyCards(-1);
-	}
 	
-	public ArrayList<Card> getMyCards(int filterByLevel) 
+	public ArrayList<Card> getAllCards(int filterByLevel) 
 	{
 		ArrayList<Card> cards = new ArrayList<Card>();
 		
@@ -256,7 +261,7 @@ public class DatabaseStream
 			argNiveau = "%";
 		}
 		String arguments[] = { argNiveau };
-		Cursor result = stream.query("Cartes", null, "Nombre>0 AND Niveau LIKE ?", arguments, null, null, "Niveau ASC, Identifiant ASC");
+		Cursor result = stream.query("Cartes", null, "Niveau LIKE ?", arguments, null, null, "Niveau ASC, Identifiant ASC");
 		
 		if (result != null)
 		{
@@ -377,7 +382,7 @@ class SQLiteConnector extends SQLiteOpenHelper
 			db.insert("Cartes", null, cv);
 			ContentValues cv2 = new ContentValues();
 			cv2.put("Nombre", 1);
-			db.update("Cartes", cv2, null, null);
+			db.update("Cartes", cv2, "Niveau < 3", null);
 			// \o/
 			
 		}

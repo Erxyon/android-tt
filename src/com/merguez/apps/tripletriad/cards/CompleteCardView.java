@@ -1,13 +1,18 @@
 package com.merguez.apps.tripletriad.cards;
 
+import java.io.IOException;
+
+import android.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Typeface;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
@@ -15,54 +20,72 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 
 import com.merguez.apps.tripletriad.Engine;
+import com.merguez.apps.tripletriad.cards.Card.Element;
 
-/*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-@SuppressLint("ViewConstructor")
 public class CompleteCardView extends ImageView
 {	
-	private static final int PAINT_SIZE = 15;
-	private static final int PAINT_COLOR = 0xff000000;
-	private static final int SHADOW_COLOR = 0xffffffff;
-	private static final float SHADOW_RADIUS = 1.0f;
-    private static final int SHADOW_OFFSET = 1;
 	
-	private int taillePinceau;
 	private int posx = 0, posy = 0;
-	private Paint paint;
 	private Card card;
-	
+	private Context context;
+	private Bitmap redFace, blueFace, backFace; // A deplacer dans la view
+
 	public CompleteCardView(Context context)
 	{
 		super(context);
+		this.context = context;
 		
-		setClickable(false); 
-		
-		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		//Typeface typeface = Typeface.createFromAsset(context.getAssets(), "font.ttf");
-		//paint.setTypeface(typeface); 
-		paint.setColor(PAINT_COLOR);
-		paint.setTextAlign(Align.LEFT);
-		taillePinceau = PAINT_SIZE;
-		paint.setTextSize(taillePinceau);
+		setClickable(false);
 	}
+	
+
+	public CompleteCardView(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		this.context = context;
+		// TODO Auto-generated constructor stub
+		setClickable(false);
+	}
+	
+	public CompleteCardView(Context context, AttributeSet attrs, int defStyle) {
+		super(context, attrs, defStyle);
+		this.context = context;
+		// TODO Auto-generated constructor stub
+		setClickable(false);
+	}
+	
+	public void initFaces() {
+		String name = card.getName();
+		name = name.toLowerCase();
+		
+		name = name.replaceAll("[!#$Ä%&',:/@ ]", "_");
+		name = name.replaceAll("[‡‚‰ƒ¿¬]", "a");
+		name = name.replaceAll("[ÈËÍÎ» À]", "e");
+		name = name.replaceAll("[ÏÓÔÃœŒ]", "i");
+		name = name.replaceAll("[ÚˆÙ“÷‘]", "o");
+		name = name.replaceAll("[˘¸˚Ÿ‹€]", "u");
+		name = name.replace("Á", "c");
+		try 
+		{
+			blueFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(name + "_bleue.jpg"));
+			redFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(name + "_rouge.jpg"));
+		
+			backFace = BitmapFactory.decodeStream(context.getResources().getAssets().open("back.png"));	
+		
+		} 
+		catch (IOException e) 
+		{
+			Log.d("MERGUEZ", "plantage"+name);
+			e.printStackTrace();
+		}
+		this.setImageBitmap(blueFace);
+	}
+	
 	
 	public void setCard(Card c)
 	{
 		card = c;
+		initFaces();
 		invalidate();
 	}
 	
@@ -86,9 +109,9 @@ public class CompleteCardView extends ImageView
 	public Bitmap getBitmap()
 	{
 		if (card.getColor() == Engine.BLUE) { 
-			return card.getBlueFace(); 
+			return blueFace; 
 		} else if (card.getColor() == Engine.RED) { 
-			return card.getRedFace(); 
+			return redFace;
 		}
 		
 		return null;
@@ -106,72 +129,19 @@ public class CompleteCardView extends ImageView
 	
 	public int getRealWidth()
 	{
-		return card.getBlueFace().getWidth();
+		return blueFace.getWidth();
 	}
 	
 	public int getRealHeight()
 	{
-		return card.getBlueFace().getHeight();
+		return blueFace.getHeight();
 	}
 	
-	@Override
-	protected void onDraw(Canvas canvas)
-	{
-		if (card.isFaceUp())
-		{
-			if (card.getColor() == Engine.BLUE) {
-				canvas.drawBitmap(card.getBlueFace(), posx, posy, null);
-			}
-			else if (card.getColor() == Engine.RED) {
-				canvas.drawBitmap(card.getRedFace(), posx, posy, null);
-			}
-			
-		}
-		else
-		{
-			canvas.drawBitmap(card.getBackFace(), posx, posy, null);
-		}
-	}
-	
-	public void resizePictures(int x, int y)
-	{
-		Log.d("pipidechat : ", card.getName());
-		card.setBlueFace(resize(card.getBlueFace(), x, y));
-		card.setRedFace(resize(card.getRedFace(), x, y));
-		card.setBackFace(resize(card.getBackFace(), x, y));
-		
-		taillePinceau = y / 5;
-		paint.setTextSize(taillePinceau);
-		
-	}
-	
-	private Bitmap resize(Bitmap bm, int x, int y)
-	{
-		int width = bm.getWidth();
-		//Log.d("w", "width"+width);
-		int height = bm.getHeight();
-		//Log.d("h", "height"+height);
-		int newWidth = x;
-		//Log.d("w", "newwidth"+x);
-		int newHeight = y;
-	//Log.d("h", "newh"+y);
-		float scaleWidth = ((float) newWidth) / width;
-		//Log.d("scalew", "scal"+scaleWidth);
-		float scaleHeight = ((float) newHeight) / height;
-		//Log.d("scaleh", "scal"+scaleHeight);
-		
-		Matrix matrix = new Matrix();
-		matrix.postScale(scaleWidth, scaleHeight);
-		Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, true);
-	//	Log.d("resized bitmap", "resized"+resizedBitmap);
-
-		return resizedBitmap;
-	}
 	
 	private void applyRotation(float start, float end) 
 	{		
-		final float centerX = posx + (card.getBlueFace().getWidth() / 2.0f);
-		final float centerY = posy + (card.getBlueFace().getHeight() / 2.0f);
+		final float centerX = posx + (blueFace.getWidth() / 2.0f);
+		final float centerY = posy + (blueFace.getHeight() / 2.0f);
 
 		final FlipCardAnimation rotation = new FlipCardAnimation(start, end, centerX, centerY);
 		rotation.setDuration(300);

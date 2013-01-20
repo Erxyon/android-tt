@@ -3,9 +3,11 @@ package com.merguez.apps.tripletriad.cards;
 import java.io.IOException;
 import java.text.Normalizer;
 
+import android.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
 import com.merguez.apps.tripletriad.Engine;
@@ -33,11 +35,10 @@ import com.merguez.apps.tripletriad.Engine;
  */
 public class Card
 {
-	private String name;
+	public String name;
 	private Context context;
 	private int level;
 	private boolean locked = false, selected = false;
-	private Bitmap redFace, blueFace, backFace; // A deplacer dans la view
 	private CompleteCardView cardView;
 	private int color, rewardDirectColor;
 	private boolean visible;
@@ -48,6 +49,9 @@ public class Card
 	public int top, left, bottom, right;
 	public int[] valeursBase = new int[4];
 	private int animTempColor;
+	
+	public int id;
+	
 	
 	// this.number = number;
 	
@@ -70,41 +74,10 @@ public class Card
 		color = rewardDirectColor = Engine.BLUE;
 		visible = true;
 		
-		/*
-		 * A deplacer dans la view
-		 */
 		
-		this.name = this.name.toLowerCase();
 		
-		this.name = this.name.replaceAll("[!#$Ä%&',:/@ ]", "_");
-		this.name = this.name.replaceAll("[‡‚‰ƒ¿¬]", "a");
-		this.name = this.name.replaceAll("[ÈËÍÎ» À]", "e");
-		this.name = this.name.replaceAll("[ÏÓÔÃœŒ]", "i");
-		this.name = this.name.replaceAll("[ÚˆÙ“÷‘]", "o");
-		this.name = this.name.replaceAll("[˘¸˚Ÿ‹€]", "u");
-		this.name = this.name.replace("Á", "c");
 		
-		try 
-		{
-			blueFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(this.name + "_bleue.jpg"));
-		/*	Log.d("blueface :", "kikoo "+blueFace);
-			Log.d("blueface :", "height "+blueFace.getHeight());
-			Log.d("blueface :", "width "+blueFace.getWidth());
-			*/redFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(this.name + "_rouge.jpg"));
-			/*Log.d("red :", "kikoo "+redFace);
-			Log.d("red : :", "height "+redFace.getHeight());
-			Log.d("red : :", "width "+redFace.getWidth());
-			*/
-			backFace = BitmapFactory.decodeStream(context.getResources().getAssets().open("back.png"));	
-			/*Log.d("bzck :", "kikoo "+backFace);
-			Log.d("back : :", "height "+backFace.getHeight());
-			Log.d("back : :", "width "+backFace.getWidth());*/
-		} 
-		catch (IOException e) 
-		{
-			Log.d("MERGUEZ", "plantage"+this.name);
-			e.printStackTrace();
-		}
+		
 		
 		cardView = null;
 	}
@@ -300,27 +273,5 @@ public class Card
 		return level;
 	}
 	
-	public Bitmap getRedFace() {
-		return redFace;
-	}
-	
-	public Bitmap getBlueFace() {
-		return blueFace;
-	}
-	
-	public Bitmap getBackFace() {
-		return backFace;
-	}
 
-	public void setRedFace(Bitmap redFace) {
-		this.redFace = redFace;
-	}
-
-	public void setBlueFace(Bitmap blueFace) {
-		this.blueFace = blueFace;
-	}
-
-	public void setBackFace(Bitmap backFace) {
-		this.backFace = backFace;
-	}
 }
