@@ -1,30 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="75dp"
+    android:layout_height="wrap_content"
     android:orientation="horizontal" >
 
-    <com.merguez.apps.tripletriad.cards.CompleteCardView
-        android:id="@+id/carte"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:adjustViewBounds="true" />
+    <CheckBox
+        android:id="@+id/checkBox1"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:focusable="false"
+        android:text="" />
 
     <TextView
         android:id="@+id/nomCarte"
         android:layout_width="wrap_content"
-        android:layout_height="75dp"
+        android:layout_height="35dp"
+        android:layout_toRightOf="@+id/checkBox1"
         android:gravity="center_vertical"
-        android:layout_toRightOf="@+id/carte"
         android:paddingLeft="10dp"
         android:text="Nom de la carte" />
 
     <TextView
         android:id="@+id/nombre"
         android:layout_width="wrap_content"
-        android:layout_height="75dp"
+        android:layout_height="35dp"
         android:layout_alignParentRight="true"
         android:gravity="center_vertical"
         android:text="111111111111111111" />
+
+    <LinearLayout
+            android:id="@+id/ligne2"
+       android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:layout_marginBottom="-70dip"
+          android:visibility="gone"
+        
+        android:layout_below="@+id/nomCarte"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <com.merguez.apps.tripletriad.cards.CompleteCardView
+            android:id="@+id/carte"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:adjustViewBounds="true" />
+    </LinearLayout>
 
 </RelativeLayout>

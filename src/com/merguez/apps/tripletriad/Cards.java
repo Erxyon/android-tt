@@ -10,12 +10,15 @@ import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +62,13 @@ public class Cards extends ListActivity
 				if (!(v instanceof TextView)) {
 					Card carte = (Card) adapter.mThumbIds.get(position);
 					Toast.makeText(Cards.this, "Nom : " + carte.getName(), Toast.LENGTH_SHORT).show();
+					
+					View toolbar = v.findViewById(R.id.ligne2);
+	                // Creating the expand animation for the item
+	                ExpandAnimation expandAni = new ExpandAnimation(toolbar, 1000);
+	                // Start the animation on the toolbar
+	                toolbar.startAnimation(expandAni);
+	                
 				}
 			}
 
@@ -158,6 +168,7 @@ public class Cards extends ListActivity
 		
 		public View getView(int position, View convertView, ViewGroup parent) 
 		{
+			Log.d("merguez", "pos:"+position);
 			if (getItemViewType(position) == 1) {
 				TextView text;
 				if(convertView == null)
@@ -186,17 +197,16 @@ public class Cards extends ListActivity
 			       
 			        
 			        cv = (CompleteCardView) view.findViewById(R.id.carte);
-					//cv = new CompleteCardView(context);
-			        //view.setLayoutParams(new LinearLayout.LayoutParams(85, 85));
 					cv.setScaleType(ImageView.ScaleType.FIT_XY);
 					cv.setPadding(2, 2, 2, 2);
+					
 	
 				}
 				else
 				{
 					view = convertView;
-				}	   
-
+				}
+				
 				Card card = (Card) mThumbIds.get(position);
 		        cv = (CompleteCardView) view.findViewById(R.id.carte);
 				cv.setCard(card);
@@ -217,7 +227,16 @@ public class Cards extends ListActivity
 				}
 				else {
 					texteNombre.setText(Integer.toString(nombre));
+					texteNombre.setEnabled(true);
+					nomCarte.setEnabled(true);
 				}
+				
+
+	            View toolbar = view.findViewById(R.id.ligne2);
+	            ((RelativeLayout.LayoutParams) toolbar.getLayoutParams()).bottomMargin = -70;
+	            toolbar.setVisibility(View.GONE);
+
+				
 
 				//cv.resizePictures(75, 75);
 				return view;
