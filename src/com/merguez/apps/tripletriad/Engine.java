@@ -15,23 +15,8 @@ import android.preference.PreferenceManager;
 import com.merguez.apps.tripletriad.cards.Card;
 import com.merguez.apps.tripletriad.reseau.WifiConnection;
 import com.merguez.apps.tripletriad.robots.Action;
-import com.merguez.apps.tripletriad.R;
+import com.merguez.apps.tripletriad.data.DatabaseStream;
 
-/*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 public class Engine
 {
 	
@@ -40,7 +25,6 @@ public class Engine
 	public static final int OPPONENT = 2;
 	public static final int BLUE = PLAYER;
 	public static final int RED = OPPONENT;
-	/*
 	
 	public static final int GILS_WIN = 100;
 	public static final int GILS_LOOSE = 10;
@@ -64,7 +48,7 @@ public class Engine
 	
 	public Engine(Activity c, Card[] playerDeck, boolean pvp, boolean serveur, boolean same, boolean plus, boolean samewall, boolean combo, boolean pluswall, boolean elementary, String pvpServerIp)
 	{
-		context = c;
+		/*context = c;
 		this.playerDeck = playerDeck;
 		opponentDeck = new Card[playerDeck.length];
 		isServer = serveur;
@@ -113,10 +97,10 @@ public class Engine
 			pvpConnection = new WifiConnection(false, pvpServerIp, getPort(), getTtacc());
 			pvpConnection.addNetworkListener(this);
 			new Thread(pvpConnection).start();
-		}
+		}*/
 	}
 	
-	public void startGame() {
+	/*public void startGame() {
 		gameStarted = true;
 	}
 	

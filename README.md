@@ -1,11 +1,12 @@
-Android-Triple-Triad
+Android-TT
 ====================
 
-Android portage of the Final Fantasy 8's Triple Triad game 
+Android portage of the Final Fantasy 8's Triple Triad game
+Based on the version made by Sylvain "Viish" Berfini.
 
 License
 ====================
-    Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
+    Copyright (C) <2012-2013>  <>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,10 +21,10 @@ License
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+Note
+====================
+This license does not apply to the images in the assets/ folder, which are copyrighted.
+
 About
 ====================
-
-
-
-
-PUTE MERGUEZ A LA BOLOGNAISE.
+This project's goal is only to learn how to make an Android game.

@@ -1,4 +1,4 @@
-package com.merguez.apps.tripletriad;
+package com.merguez.apps.tripletriad.data;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,46 +15,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.SparseArray;
+import android.util.SparseIntArray;
 
 import com.merguez.apps.tripletriad.cards.Card;
 import com.merguez.apps.tripletriad.cards.Card.Element;
-// ULTRA GIGA COMMENTAIRE
-/*
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * HASHMAP PUTAIN DE SA RACE BOULBA DE SA MAMAN LA CHIENNE
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- */
-/*  Copyright (C) <2011-2012>  <Florian et Guillaume>
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 public class DatabaseStream 
 {
 	
@@ -88,7 +53,7 @@ public class DatabaseStream
 		return carte;
 	}
 	
-	public static SparseArray<Integer> nombreCartes = new SparseArray<Integer>();
+	public static SparseIntArray nombreCartes = new SparseIntArray();
 	// idCarte => nombre
 	
 	public void load(){
@@ -104,7 +69,7 @@ public class DatabaseStream
 
 					int id = result.getInt(result.getColumnIndex("Identifiant"));
 					int nombrecartes = result.getInt(result.getColumnIndex("Nombre"));
-					this.nombreCartes.put(id, nombrecartes);
+					DatabaseStream.nombreCartes.put(id, nombrecartes);
 					
 				}//traitement ce que ya de dans
 				
@@ -343,16 +308,7 @@ public class DatabaseStream
 	
 }
 */
-	
-/* message a caractere personnel : la mienne est plus grosse que la votre XD
- * v1
- * 
- * Cartes
- * 		Identifiant int
- * 		Nom			text tu sers a rien
- * 		Nombre		int
- * TODO	Niveau		int ???
- */
+
 class SQLiteConnector extends SQLiteOpenHelper 
 {
 	public SQLiteConnector(Context context, String databaseName, int databaseVersion)
@@ -380,7 +336,7 @@ class SQLiteConnector extends SQLiteOpenHelper
 			cv.put("Niveau", card.getLevel());
 			cv.put("Element", card.element.toString());
 			
-			// insertion dans la database de merde
+			// insertion dans la database
 			db.insert("Cartes", null, cv);
 			ContentValues cv2 = new ContentValues();
 			cv2.put("Nombre", 1);

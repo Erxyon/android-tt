@@ -1,7 +1,6 @@
 package com.merguez.apps.tripletriad.views;
 
 import com.merguez.apps.tripletriad.Engine;
-import com.merguez.apps.tripletriad.Log;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -41,7 +40,9 @@ public class HandView extends ImageView
 			handPicture = BitmapFactory.decodeStream(context.getResources().getAssets().open("toss.png"));
 		}
 		catch (Exception e)
-		{ Log.e(e); }
+		{
+		// log
+		}
 		
 		if (currentPlayer == Engine.OPPONENT)
 		{			

@@ -3,7 +3,6 @@ package com.merguez.apps.tripletriad.cards;
 import java.io.IOException;
 import java.text.Normalizer;
 
-import android.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,21 +11,6 @@ import android.util.Log;
 
 import com.merguez.apps.tripletriad.Engine;
 
-/*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 
 /*
  * Règles de calcul :
@@ -180,12 +164,12 @@ public class Card
 		} else {
 			/*
 			 * Note : je ne sais pas ce qu'il se passe si une carte à 1 se prend un malus élémentaire
-			 * ça fait 0 ou 1 ?
+			 * ça fait 0 ou 1 ? => 0
 			 */
-			this.left = Math.max(this.left-1, 10);
-			this.top = Math.max(this.top-1, 10);
-			this.right = Math.max(this.right-1, 10);
-			this.bottom = Math.max(this.bottom-1, 10);
+			this.left = this.left-1;
+			this.top = this.top-1;
+			this.right = this.right-1;
+			this.bottom = this.bottom-1;
 		}
 		/*
 		 * 

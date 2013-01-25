@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.merguez.apps.tripletriad.data.DatabaseStream;
 import com.merguez.apps.tripletriad.cards.Card;
 import com.merguez.apps.tripletriad.cards.CompleteCardView;
 import com.merguez.apps.tripletriad.R;

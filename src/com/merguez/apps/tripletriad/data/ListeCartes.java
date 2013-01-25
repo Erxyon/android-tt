@@ -1,4 +1,4 @@
-package com.merguez.apps.tripletriad;
+package com.merguez.apps.tripletriad.data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
