@@ -33,12 +33,10 @@
     <LinearLayout
         android:id="@+id/ligne2"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_height="0dp"
         android:layout_below="@+id/nomCarte"
-        android:layout_marginBottom="-70dip"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:visibility="gone" >
+        android:orientation="horizontal">
 
         <com.merguez.apps.tripletriad.cards.CompleteCardView
             android:id="@+id/carte"

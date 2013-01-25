@@ -1,5 +1,8 @@
 package com.merguez.apps.tripletriad;
 
+import android.content.Context;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
@@ -7,55 +10,42 @@ import android.widget.RelativeLayout.LayoutParams;
 
 
 public class ExpandAnimation extends Animation {
-    private View mAnimatedView;
-    private LayoutParams mViewLayoutParams;
-    private int mMarginStart, mMarginEnd;
-    private boolean mIsVisibleAfter = false;
-    private boolean mWasEndedAlready = false;
-
+    
+    int targetHeight;
+    View view;
+    boolean down;
+    
     /**
      * Initialize the animation
      * @param view The layout we want to animate
      * @param duration The duration of the animation, in ms
      */
-    public ExpandAnimation(View view, int duration) {
+    public ExpandAnimation(Context context, View view, int targetHeight, boolean down) {
+        this.view = view;
+        this.targetHeight = targetHeight;
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        this.targetHeight = (int)((targetHeight * displayMetrics.density) + 0.5);
 
-        setDuration(duration);
-        mAnimatedView = view;
-        mViewLayoutParams = (LayoutParams) view.getLayoutParams();
-
-        // decide to show or hide the view
-        mIsVisibleAfter = (view.getVisibility() == View.VISIBLE);
-
-        mMarginStart = mViewLayoutParams.bottomMargin;
-        mMarginEnd = (mMarginStart == 0 ? (0- view.getHeight()) : 0);
-
-        view.setVisibility(View.VISIBLE);
+        this.down = down;
     }
 
     @Override
     protected void applyTransformation(float interpolatedTime, Transformation t) {
-        super.applyTransformation(interpolatedTime, t);
-
-        if (interpolatedTime < 1.0f) {
-
-            // Calculating the new bottom margin, and setting it
-            mViewLayoutParams.bottomMargin = mMarginStart
-                    + (int) ((mMarginEnd - mMarginStart) * interpolatedTime);
-
-            // Invalidating the layout, making us seeing the changes we made
-            mAnimatedView.requestLayout();
-
-        // Making sure we didn't run the ending before (it happens!)
-        } else if (!mWasEndedAlready) {
-            mViewLayoutParams.bottomMargin = mMarginEnd;
-            mAnimatedView.requestLayout();
-
-            if (mIsVisibleAfter) {
-                mAnimatedView.setVisibility(View.GONE);
-            }
-            mWasEndedAlready = true;
+        int newHeight;
+        if (down) {
+            newHeight = (int) (targetHeight * interpolatedTime);
+        } else {
+            newHeight = (int) (targetHeight * (1 - interpolatedTime));
         }
+        view.getLayoutParams().height = newHeight;
+        Log.d("merguez", interpolatedTime+": "+view.getLayoutParams().height);
+        view.requestLayout();
     }
+    
+    @Override
+    public boolean willChangeBounds() {
+        return true;
+    }
+
 }
 

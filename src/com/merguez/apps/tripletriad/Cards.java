@@ -6,12 +6,15 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Debug;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -69,10 +72,20 @@ public class Cards extends ListActivity
 					
 					View toolbar = v.findViewById(R.id.ligne2);
 	                // Creating the expand animation for the item
-	                ExpandAnimation expandAni = new ExpandAnimation(toolbar, 1000);
+	                ExpandAnimation expandAni = new ExpandAnimation(context, toolbar, 70, true);
+	                expandAni.setDuration(1000);
+	                
+	                Interpolator interpolator = new AccelerateInterpolator();
+	                expandAni.setInterpolator(interpolator);
+	                
 	                // Start the animation on the toolbar
 	                toolbar.startAnimation(expandAni);
-	                
+	                if (adapter.cartesAffichees.contains((Integer)position)) {
+	                	adapter.cartesAffichees.remove((Integer)position);
+	                  } else {
+	  					Log.d("gredgred", "gdsgsgs");
+	                	  adapter.cartesAffichees.add((Integer)position);
+	                  }
 				}
 			}
 
@@ -143,13 +156,14 @@ public class Cards extends ListActivity
 	{	
 		private ArrayList<Object> mThumbIds;
 		private ArrayList<Integer> cartesSelectionnees;
+		public ArrayList<Integer> cartesAffichees;
 		private Context context;
 
 		public CardAdapter(Context context, ArrayList<Object> listeCartes) 
 		{
 			this.context = context;
 			this.cartesSelectionnees = new ArrayList<Integer>();
-
+			this.cartesAffichees = new ArrayList<Integer>();
 			this.mThumbIds = listeCartes;
 		}
 
@@ -248,7 +262,19 @@ public class Cards extends ListActivity
 				} else {
 					holder.checkBox.setChecked(false);
 				}
+				
+				
+				if (cartesAffichees.contains((Integer)position)) {
+					Log.d("izhgsuizgki", "kihgsizhg");
+					DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+					holder.ligne2.getLayoutParams().height = (int)((70 * displayMetrics.density) + 0.5);
+					
 
+				} else {
+					holder.ligne2.getLayoutParams().height = 0;
+
+				}
+				
 				int nombre = 0;
 				if (DatabaseStream.nombreCartes.indexOfKey(card.id) >= 0) {
 					nombre = DatabaseStream.nombreCartes.get(card.id);
@@ -267,9 +293,11 @@ public class Cards extends ListActivity
 					holder.nomCarte.setEnabled(true);
 				}
 				
+				//holder.ligne2.getLayoutParams().height = 0;
+				
 
-	            ((RelativeLayout.LayoutParams) holder.ligne2.getLayoutParams()).bottomMargin = -70;
-	            holder.ligne2.setVisibility(View.GONE);
+	           // ((RelativeLayout.LayoutParams) holder.ligne2.getLayoutParams()).bottomMargin = -70;
+	          //  holder.ligne2.setVisibility(View.GONE);
 
 				return convertView;
 			}
