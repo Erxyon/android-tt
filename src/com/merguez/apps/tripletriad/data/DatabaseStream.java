@@ -350,7 +350,7 @@ class SQLiteConnector extends SQLiteOpenHelper
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
 	{
 		// TODO A enlever
-		db.execSQL("DROP TABLE Cartes");
+		db.execSQL("DROP TABLE IF EXISTS Cartes");
 		onCreate(db);
 		
 		// En cas de changement dans la structure de la base de données, apporter les modifications ici aussi

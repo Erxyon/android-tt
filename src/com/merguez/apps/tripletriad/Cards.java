@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Debug;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,7 +39,7 @@ public class Cards extends ListActivity
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-
+		//Debug.startMethodTracing("calc");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.cards);
 
@@ -54,10 +56,11 @@ public class Cards extends ListActivity
 			listeCartes.add("Niveau "+i);
 			listeCartes.addAll(cartes);
 
-
 		}
+		
 		adapter = new CardAdapter(context, listeCartes); 
 		setListAdapter(adapter);
+		
 		getListView().setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				if (!(v instanceof TextView)) {
@@ -77,11 +80,22 @@ public class Cards extends ListActivity
 		//getWindow().requestFeature(Window.FEATURE_NO_TITLE);
 
 	}
+	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		//Debug.stopMethodTracing();
+	}
 
-	public class ViewHolder {
+	static class ViewHolder {
 
-		public TextView text;
-		public GridView gridview;
+		public TextView nomCarte;
+		public TextView texteNombre;
+		public CheckBox checkBox;
+		
+		public CompleteCardView cv;
+		public View ligne2;
 
 	}
 	/*public class EfficientAdapter extends BaseAdapter {
@@ -128,11 +142,13 @@ public class Cards extends ListActivity
 	class CardAdapter extends BaseAdapter
 	{	
 		private ArrayList<Object> mThumbIds;
+		private ArrayList<Integer> cartesSelectionnees;
 		private Context context;
 
 		public CardAdapter(Context context, ArrayList<Object> listeCartes) 
 		{
 			this.context = context;
+			this.cartesSelectionnees = new ArrayList<Integer>();
 
 			this.mThumbIds = listeCartes;
 		}
@@ -169,50 +185,69 @@ public class Cards extends ListActivity
 		
 		public View getView(int position, View convertView, ViewGroup parent) 
 		{
-			Log.d("merguez", "pos:"+position);
+			// Pour les TextView "Niveau 1", "Niveau 2", ...
 			if (getItemViewType(position) == 1) {
 				TextView text;
-				if(convertView == null)
-				{
+				if(convertView == null) {
 					text = new TextView(context);
 					text.setPadding(2, 2, 2, 2);
-					
-				}
-				else
-				{
+				} else {
 					text = (TextView) convertView;
 				}
+				
 				text.setText((String) mThumbIds.get(position));
 			
 				return text;
-			}
-			else {
-				View view;
+				
+			// Pour les lignes correspondants aux cartes
+			} else {
+
+				ViewHolder holder;
 				CompleteCardView cv;
 	
-				if(convertView == null)
-				{
+				if(convertView == null) {
 					
 			        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			        view = inflater.inflate(R.layout.affichage_carte, parent, false);
+			        convertView = inflater.inflate(R.layout.affichage_carte, parent, false);
 			       
+			        holder = new ViewHolder();
 			        
-			        cv = (CompleteCardView) view.findViewById(R.id.carte);
-					cv.setScaleType(ImageView.ScaleType.FIT_XY);
-					cv.setPadding(2, 2, 2, 2);
+			        holder.cv = (CompleteCardView) convertView.findViewById(R.id.carte);
+					holder.nomCarte = (TextView) convertView.findViewById(R.id.nomCarte);
+					holder.texteNombre = (TextView) convertView.findViewById(R.id.nombre);
+		            holder.ligne2 = convertView.findViewById(R.id.ligne2);
+					holder.checkBox = (CheckBox) convertView.findViewById(R.id.checkBox1);
+		            
+		            holder.checkBox.setOnClickListener( new View.OnClickListener() {
+		                public void onClick(View v) {
+		                  CheckBox cb = (CheckBox) v;
+		                  Integer pos = (Integer) cb.getTag();
+		                  if (cartesSelectionnees.contains(pos)) {
+		                	  cartesSelectionnees.remove(pos);
+		                  } else {
+		                	  cartesSelectionnees.add(pos);
+		                  }
+
+		                }
+		              });
+			        
+			        convertView.setTag(holder);
 					
 	
-				}
-				else
-				{
-					view = convertView;
+				} else {
+					holder = (ViewHolder) convertView.getTag();
 				}
 				
 				Card card = (Card) mThumbIds.get(position);
-		        cv = (CompleteCardView) view.findViewById(R.id.carte);
-				cv.setCard(card);
-				TextView nomCarte = (TextView) view.findViewById(R.id.nomCarte);
-				TextView texteNombre = (TextView) view.findViewById(R.id.nombre);
+				
+				holder.cv.setCard(card);
+				
+				holder.checkBox.setTag(position);
+				if (cartesSelectionnees.contains(position)) {
+					holder.checkBox.setChecked(true);
+				} else {
+					holder.checkBox.setChecked(false);
+				}
 
 				int nombre = 0;
 				if (DatabaseStream.nombreCartes.indexOfKey(card.id) >= 0) {
@@ -220,27 +255,23 @@ public class Cards extends ListActivity
 				}
 				
 
-				nomCarte.setText(card.getName());
-				if (nombre ==0 ) {
-					texteNombre.setText("0");
-					texteNombre.setEnabled(false);
-					nomCarte.setEnabled(false);
+				holder.nomCarte.setText(card.getName());
+				if (nombre == 0) {
+					holder.texteNombre.setText("0");
+					holder.texteNombre.setEnabled(false);
+					holder.nomCarte.setEnabled(false);
 				}
 				else {
-					texteNombre.setText(Integer.toString(nombre));
-					texteNombre.setEnabled(true);
-					nomCarte.setEnabled(true);
+					holder.texteNombre.setText(Integer.toString(nombre));
+					holder.texteNombre.setEnabled(true);
+					holder.nomCarte.setEnabled(true);
 				}
 				
 
-	            View toolbar = view.findViewById(R.id.ligne2);
-	            ((RelativeLayout.LayoutParams) toolbar.getLayoutParams()).bottomMargin = -70;
-	            toolbar.setVisibility(View.GONE);
+	            ((RelativeLayout.LayoutParams) holder.ligne2.getLayoutParams()).bottomMargin = -70;
+	            holder.ligne2.setVisibility(View.GONE);
 
-				
-
-				//cv.resizePictures(75, 75);
-				return view;
+				return convertView;
 			}
 		}
 	}

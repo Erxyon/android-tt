@@ -2,7 +2,6 @@ package com.merguez.apps.tripletriad.cards;
 
 import java.io.IOException;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +10,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.animation.AccelerateInterpolator;
@@ -19,42 +19,51 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 
 import com.merguez.apps.tripletriad.Engine;
+import com.merguez.apps.tripletriad.R;
 import com.merguez.apps.tripletriad.cards.Card.Element;
 
 
 public class CompleteCardView extends ImageView
 {	
 	
+	private static Bitmap back = null;
 	private int posx = 0, posy = 0;
 	private Card card;
 	private Context context;
+	private String name; // nom du fichier
 	private Bitmap redFace, blueFace, backFace; // A deplacer dans la view
 
 	public CompleteCardView(Context context)
 	{
 		super(context);
 		this.context = context;
-		
-		setClickable(false);
+		init();
 	}
 	
 
 	public CompleteCardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.context = context;
-		// TODO Auto-generated constructor stub
-		setClickable(false);
+		init();
 	}
 	
 	public CompleteCardView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		this.context = context;
-		// TODO Auto-generated constructor stub
+		init();
+	}
+	
+	public void init() {
 		setClickable(false);
+		if (back == null) {
+			back = BitmapFactory.decodeResource(context.getResources(), R.drawable.back);
+		}
+		this.setImageBitmap(back);
+		
 	}
 	
 	public void initFaces() {
-		String name = card.getName();
+		this.name = card.getName();
 		name = name.toLowerCase();
 		
 		name = name.replaceAll("[!#$Ä%&',:/@ ]", "_");
@@ -64,20 +73,28 @@ public class CompleteCardView extends ImageView
 		name = name.replaceAll("[ÚˆÙ“÷‘]", "o");
 		name = name.replaceAll("[˘¸˚Ÿ‹€]", "u");
 		name = name.replace("Á", "c");
-		try 
-		{
-			blueFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(name + "_bleue.jpg"));
-			redFace = BitmapFactory.decodeStream(context.getResources().getAssets().open(name + "_rouge.jpg"));
 		
-			backFace = BitmapFactory.decodeStream(context.getResources().getAssets().open("back.png"));	
+		new AsyncTask<CompleteCardView, Void, Bitmap>() {
+		    private CompleteCardView v;
+
+		    @Override
+		    protected Bitmap doInBackground(CompleteCardView... params) {
+		        v = params[0];
+		        try {
+					return BitmapFactory.decodeStream(v.context.getResources().getAssets().open(v.name + "_bleue.jpg"));
+				} catch (IOException e) {
+					return null;
+				}
+		    }
+
+		    @Override
+		    protected void onPostExecute(Bitmap result) {
+		        super.onPostExecute(result);
+		        v.blueFace = result;
+		        v.setImageBitmap(result);
+		    }
+		}.execute(this);
 		
-		} 
-		catch (IOException e) 
-		{
-			Log.d("MERGUEZ", "plantage"+name);
-			e.printStackTrace();
-		}
-		this.setImageBitmap(blueFace);
 	}
 	
 	
