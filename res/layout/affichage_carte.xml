@@ -22,14 +22,6 @@
         android:paddingLeft="10dp"
         android:text="Nom de la carte" />
 
-    <TextView
-        android:id="@+id/nombre"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_alignParentRight="true"
-        android:gravity="center_vertical"
-        android:text="111111111111111111" />
-
     <LinearLayout
         android:id="@+id/ligne2"
         android:layout_width="wrap_content"
@@ -51,5 +43,14 @@
             android:persistentDrawingCache="scrolling"
             android:scrollingCache="false" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/nomCarte"
+        android:gravity="center_vertical"
+        android:text="111111111111111111" />
 
 </RelativeLayout>

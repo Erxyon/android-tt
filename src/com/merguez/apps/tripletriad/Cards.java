@@ -6,6 +6,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Debug;
+import android.support.v4.app.ListFragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseArray;
@@ -23,6 +24,7 @@ import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,9 +32,9 @@ import android.widget.Toast;
 import com.merguez.apps.tripletriad.data.DatabaseStream;
 import com.merguez.apps.tripletriad.cards.Card;
 import com.merguez.apps.tripletriad.cards.CompleteCardView;
-import com.merguez.apps.tripletriad.R;
 
-public class Cards extends ListActivity
+
+public class Cards extends ListFragment
 {
 
 	private Context context;
@@ -41,13 +43,18 @@ public class Cards extends ListActivity
 	private ArrayList<Object> listeCartes;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		//Debug.startMethodTracing("calc");
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.cards);
-
-		context = this;
-
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.cards, null);
+        return view;
+	}
+	
+	@Override
+	public void onActivityCreated(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onActivityCreated(savedInstanceState);
+		context = getActivity().getApplicationContext();
+		
 		listeCartes = new ArrayList<Object>();
 
 		DatabaseStream dbs = new DatabaseStream(context);
@@ -64,42 +71,38 @@ public class Cards extends ListActivity
 		adapter = new CardAdapter(context, listeCartes); 
 		setListAdapter(adapter);
 		
-		getListView().setOnItemClickListener(new OnItemClickListener() {
+		/*getListView().setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				if (!(v instanceof TextView)) {
-					Card carte = (Card) adapter.mThumbIds.get(position);
-					Toast.makeText(Cards.this, "Nom : " + carte.getName(), Toast.LENGTH_SHORT).show();
-					
-					View toolbar = v.findViewById(R.id.ligne2);
-	                // Creating the expand animation for the item
-	                ExpandAnimation expandAni = new ExpandAnimation(context, toolbar, 70, true);
-	                expandAni.setDuration(1000);
-	                
-	                Interpolator interpolator = new AccelerateInterpolator();
-	                expandAni.setInterpolator(interpolator);
-	                
-	                // Start the animation on the toolbar
-	                toolbar.startAnimation(expandAni);
-	                if (adapter.cartesAffichees.contains((Integer)position)) {
-	                	adapter.cartesAffichees.remove((Integer)position);
-	                  } else {
-	  					Log.d("gredgred", "gdsgsgs");
-	                	  adapter.cartesAffichees.add((Integer)position);
-	                  }
-				}
+				
 			}
 
-		});
-		//getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-
+		});*/
+		
 	}
 	
 	@Override
-	protected void onStop() {
+	public void onListItemClick(ListView l, View v, int position, long id) {
 		// TODO Auto-generated method stub
-		super.onStop();
-		//Debug.stopMethodTracing();
+		super.onListItemClick(l, v, position, id);
+		
+		if (!(v instanceof TextView)) {
+			Card carte = (Card) adapter.mThumbIds.get(position);
+			String texte =  "Nom : " + carte.getName();
+			Toast.makeText(context, texte, Toast.LENGTH_SHORT).show();
+			
+			// Construct the intent
+			// Send the intent
+			// Wait
+			// Make a coffee
+			// Drink the coffee
+			// Go pee
+			// ToDo launch instance of detailFragment
+           
+		}
+		
 	}
+	
+	
 
 	static class ViewHolder {
 
@@ -111,59 +114,18 @@ public class Cards extends ListActivity
 		public View ligne2;
 
 	}
-	/*public class EfficientAdapter extends BaseAdapter {
-
-		LayoutInflater inflater;
-		Context context;
-		private ArrayList<Integer> items;
-		private CardAdapter adapter;
-
-		public EfficientAdapter(Context context, ArrayList<Integer> niveaux) {
-			inflater = LayoutInflater.from(context);
-			this.context = context;
-			this.items = niveaux;
-		}
-
-		public View getView(final int position, View convertView, ViewGroup parent) {
-			ViewHolder holder;
-
-			if(convertView == null){
-
-				convertView = inflater.inflate(R.layout.grid, null);
-				holder = new ViewHolder();
-
-				holder.gridview = (GridView)convertView.findViewById(R.id.grid);
-				holder.text = (TextView)convertView.findViewById(R.id.text1);
-
-				convertView.setTag(holder);
-			}else{
-
-				holder = (ViewHolder)convertView.getTag();
-			}
-
-			// Bind the data efficiently with the holder.
-
-			holder.text.setText("NIVEAU "+items.get(position));
-
-			return convertView;
-		}
-
-
-	}*/
 
 
 	class CardAdapter extends BaseAdapter
 	{	
 		private ArrayList<Object> mThumbIds;
 		private ArrayList<Integer> cartesSelectionnees;
-		public ArrayList<Integer> cartesAffichees;
 		private Context context;
 
 		public CardAdapter(Context context, ArrayList<Object> listeCartes) 
 		{
 			this.context = context;
 			this.cartesSelectionnees = new ArrayList<Integer>();
-			this.cartesAffichees = new ArrayList<Integer>();
 			this.mThumbIds = listeCartes;
 		}
 
@@ -217,7 +179,6 @@ public class Cards extends ListActivity
 			} else {
 
 				ViewHolder holder;
-				CompleteCardView cv;
 	
 				if(convertView == null) {
 					
@@ -254,7 +215,7 @@ public class Cards extends ListActivity
 				
 				Card card = (Card) mThumbIds.get(position);
 				
-				holder.cv.setCard(card);
+				//holder.cv.setCard(card);
 				
 				holder.checkBox.setTag(position);
 				if (cartesSelectionnees.contains(position)) {
@@ -264,16 +225,8 @@ public class Cards extends ListActivity
 				}
 				
 				
-				if (cartesAffichees.contains((Integer)position)) {
-					Log.d("izhgsuizgki", "kihgsizhg");
-					DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-					holder.ligne2.getLayoutParams().height = (int)((70 * displayMetrics.density) + 0.5);
-					
-
-				} else {
-					holder.ligne2.getLayoutParams().height = 0;
-
-				}
+				
+				holder.ligne2.getLayoutParams().height = 0;
 				
 				int nombre = 0;
 				if (DatabaseStream.nombreCartes.indexOfKey(card.id) >= 0) {
@@ -293,12 +246,6 @@ public class Cards extends ListActivity
 					holder.nomCarte.setEnabled(true);
 				}
 				
-				//holder.ligne2.getLayoutParams().height = 0;
-				
-
-	           // ((RelativeLayout.LayoutParams) holder.ligne2.getLayoutParams()).bottomMargin = -70;
-	          //  holder.ligne2.setVisibility(View.GONE);
-
 				return convertView;
 			}
 		}
