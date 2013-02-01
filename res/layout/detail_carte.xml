@@ -3,6 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
+     <com.merguez.apps.tripletriad.cards.CompleteCardView
+            android:id="@+id/carte"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:padding="2dp"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:cacheColorHint="@android:color/transparent"
+            android:fastScrollEnabled="true"
+            android:persistentDrawingCache="scrolling"
+            android:scrollingCache="false" />
 
 </LinearLayout>
