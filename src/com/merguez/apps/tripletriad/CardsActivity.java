@@ -15,13 +15,20 @@ public class CardsActivity extends FragmentActivity {
         
         
 
-        if (getSupportFragmentManager().findFragmentById(R.id.fragment1) == null) {
+        /*if (getSupportFragmentManager().findFragmentById(R.id.fragment1) == null) {
             Cards list = new Cards();
             getSupportFragmentManager().beginTransaction().add(R.id.fragment1, list).commit();
         }
         if (getSupportFragmentManager().findFragmentById(R.id.fragment2) == null) {
             DetailCarte detail = new DetailCarte();
+            detail.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction().add(R.id.fragment2, detail).commit();
+        }*/
+        if (savedInstanceState == null) {
+            DetailCarte detail = new DetailCarte();
+            detail.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment2, detail).commit();
+        	
         }
     }
 }

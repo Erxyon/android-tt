@@ -6,12 +6,30 @@ import com.merguez.apps.tripletriad.data.ListeCartes;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 public class DetailCarte extends Fragment{
 
+	public static DetailCarte newInstance(int index) {
+		DetailCarte f = new DetailCarte();
+
+        // Supply index input as an argument.
+        Bundle args = new Bundle();
+        args.putInt("index", index);
+        f.setArguments(args);
+
+        return f;
+    }
+
+    public int getShownIndex() {
+    	Log.d("aa", "merguez");
+    	Log.d("aa", getArguments().toString());
+    	
+        return getArguments().getInt("index", 0);
+    }
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -28,7 +46,7 @@ public class DetailCarte extends Fragment{
 		
 		View view = inflater.inflate(R.layout.detail_carte, null);
 		
-		int id = 1;
+		int id = getShownIndex();
 		CompleteCardView cv = (CompleteCardView) view.findViewById(R.id.carte);
 		Card card = (Card) ListeCartes.defaut.get(id);
 			

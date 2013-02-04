@@ -6,6 +6,7 @@ import android.app.ListActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Debug;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -41,6 +42,8 @@ public class Cards extends ListFragment
 	private CardAdapter adapter;
 
 	private ArrayList<Object> listeCartes;
+	
+	int positionAffichee = 0;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,6 +51,13 @@ public class Cards extends ListFragment
 		View view = inflater.inflate(R.layout.cards, null);
         return view;
 	}
+	
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("curChoice", positionAffichee);
+    }
+
 	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -71,6 +81,14 @@ public class Cards extends ListFragment
 		adapter = new CardAdapter(context, listeCartes); 
 		setListAdapter(adapter);
 		
+		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		
+		if (savedInstanceState != null) {
+            // Restore last state for checked position.
+            positionAffichee = savedInstanceState.getInt("curChoice", 0);
+        }
+		showDetails(positionAffichee);
+		
 		/*getListView().setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				
@@ -90,17 +108,40 @@ public class Cards extends ListFragment
 			String texte =  "Nom : " + carte.getName();
 			Toast.makeText(context, texte, Toast.LENGTH_SHORT).show();
 			
-			// Construct the intent
-			// Send the intent
-			// Wait
-			// Make a coffee
-			// Drink the coffee
-			// Go pee
-			// ToDo launch instance of detailFragment
+			showDetails(positionAffichee);
+			
            
 		}
 		
 	}
+	
+    public void showDetails(int index) {
+        positionAffichee = index;
+
+       
+        // We can display everything in-place with fragments, so update
+        // the list to highlight the selected item and show the data.
+        getListView().setItemChecked(index, true);
+
+        // Check what fragment is currently shown, replace if needed.
+        DetailCarte details = (DetailCarte)
+                getFragmentManager().findFragmentById(R.id.fragment2);
+        if (details == null || details.getShownIndex() != index) {
+            // Make new fragment to show this selection.
+        	Card carte = (Card) adapter.mThumbIds.get(index);
+            details = DetailCarte.newInstance(carte.id);
+
+            // Execute a transaction, replacing any existing fragment
+            // with this one inside the frame.
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment2, details);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
+        }
+
+       
+    }
+
 	
 	
 
