@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Debug;
 import android.support.v4.app.FragmentTransaction;
@@ -43,7 +44,7 @@ public class Cards extends ListFragment
 
 	private ArrayList<Object> listeCartes;
 	
-	int positionAffichee = 0;
+	int positionAffichee = -1;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,7 +86,7 @@ public class Cards extends ListFragment
 		
 		if (savedInstanceState != null) {
             // Restore last state for checked position.
-            positionAffichee = savedInstanceState.getInt("curChoice", 0);
+            positionAffichee = savedInstanceState.getInt("curChoice", -1);
         }
 		showDetails(positionAffichee);
 		
@@ -108,7 +109,7 @@ public class Cards extends ListFragment
 			String texte =  "Nom : " + carte.getName();
 			Toast.makeText(context, texte, Toast.LENGTH_SHORT).show();
 			
-			showDetails(positionAffichee);
+			showDetails(position);
 			
            
 		}
@@ -117,27 +118,33 @@ public class Cards extends ListFragment
 	
     public void showDetails(int index) {
         positionAffichee = index;
-
        
         // We can display everything in-place with fragments, so update
         // the list to highlight the selected item and show the data.
-        getListView().setItemChecked(index, true);
+        int id = -1;
+        if (index > -1) {
+        	 getListView().setItemChecked(index, true);
+             
+         	Card carte = (Card) adapter.mThumbIds.get(index);
+         	id = carte.id;
+        }
 
         // Check what fragment is currently shown, replace if needed.
         DetailCarte details = (DetailCarte)
                 getFragmentManager().findFragmentById(R.id.fragment2);
-        if (details == null || details.getShownIndex() != index) {
-            // Make new fragment to show this selection.
-        	Card carte = (Card) adapter.mThumbIds.get(index);
-            details = DetailCarte.newInstance(carte.id);
+        
+        if (details == null || !details.isInLayout()) {
+        	
+        	Log.d("testfrg", "fragment details null");
 
             // Execute a transaction, replacing any existing fragment
             // with this one inside the frame.
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.fragment2, details);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.commit();
-        }
+            Intent launchingIntent = new Intent(getActivity(),DetailCarte.class);
+  		  launchingIntent.putExtra("ID_CARTE", id);
+  		  startActivity(launchingIntent);
+        } else {
+        	details.updateCarte(id);
+    	}
 
        
     }

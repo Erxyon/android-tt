@@ -24,11 +24,11 @@ public class CardsActivity extends FragmentActivity {
             detail.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction().add(R.id.fragment2, detail).commit();
         }*/
-        if (savedInstanceState == null) {
+        /*if (savedInstanceState == null) {
             DetailCarte detail = new DetailCarte();
             detail.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction().add(R.id.fragment2, detail).commit();
         	
-        }
+        }*/
     }
 }
