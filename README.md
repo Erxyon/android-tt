@@ -25,6 +25,23 @@ Note
 ====================
 This license does not apply to the images in the assets/ folder, which are copyrighted.
 
+Dependencies
+====================
+To obtain a working version of this project under Eclipse :
+1) Create the project "ActionBarSherlock"
+* File > New > Other...
+* Select Android > Android project from Existing Code
+* Click on "Browse" and select the folder where you extracted ActionBarSherlock.zip, then click on "Finish"
+
+2) Adding ActionBarSherlock as a library to the project
+* Right-click on the project name (AndroidTripleTriad) > Properties
+* Android > Library > Add. Select ActionBarSherlock and click "Apply"
+
+3) If it doesn't work
+* Check JRE 1.6
+* Check ActionBarSherlock is marked as library
+ 
+
 About
 ====================
 This project's goal is only to learn how to make an Android game.

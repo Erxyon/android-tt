@@ -43,8 +43,9 @@ public class Cards extends ListFragment
 	private CardAdapter adapter;
 
 	private ArrayList<Object> listeCartes;
-	
-	int positionAffichee = -1;
+
+	public static int positionAffichee = -1;
+	public static int idAffiche = -1;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,6 +53,7 @@ public class Cards extends ListFragment
 		View view = inflater.inflate(R.layout.cards, null);
         return view;
 	}
+	
 	
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -128,21 +130,14 @@ public class Cards extends ListFragment
          	Card carte = (Card) adapter.mThumbIds.get(index);
          	id = carte.id;
         }
+        
+        idAffiche = id;
 
         // Check what fragment is currently shown, replace if needed.
         DetailCarte details = (DetailCarte)
                 getFragmentManager().findFragmentById(R.id.fragment2);
         
-        if (details == null || !details.isInLayout()) {
-        	
-        	Log.d("testfrg", "fragment details null");
-
-            // Execute a transaction, replacing any existing fragment
-            // with this one inside the frame.
-            Intent launchingIntent = new Intent(getActivity(),DetailCarte.class);
-  		  launchingIntent.putExtra("ID_CARTE", id);
-  		  startActivity(launchingIntent);
-        } else {
+        if (details != null && details.isInLayout()) {
         	details.updateCarte(id);
     	}
 

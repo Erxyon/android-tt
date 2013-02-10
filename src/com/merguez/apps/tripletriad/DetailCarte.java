@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 
 public class DetailCarte extends Fragment{
 
-	public int id;
+	public int id = -1;
 	public CompleteCardView cv;
 	
 	@Override
@@ -30,8 +30,10 @@ public class DetailCarte extends Fragment{
 			ListeCartes.listeDesCartes(getActivity());
 		}
 		
-		Intent launchingIntent = getActivity().getIntent();
-		id = launchingIntent.getIntExtra("ID_CARTE", 0);
+		if (Cards.idAffiche > -1) {
+			id = Cards.idAffiche;
+		}
+		
 		
 		View view = inflater.inflate(R.layout.detail_carte, null);
 		
