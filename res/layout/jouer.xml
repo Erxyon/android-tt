@@ -4,5 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+<ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1" />
 
+        <TextView
+            android:id="@android:id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FF0000"
+            android:text="Caca" />
 </LinearLayout>
