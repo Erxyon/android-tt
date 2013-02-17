@@ -13,6 +13,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 import com.actionbarsherlock.app.SherlockListFragment;
 import com.merguez.apps.tripletriad.MesCartes.CardAdapter;
 import com.merguez.apps.tripletriad.cards.Card;
+import com.merguez.apps.tripletriad.data.Adversaire;
 import com.merguez.apps.tripletriad.data.DatabaseStream;
 
 public class Jouer extends SherlockListFragment {

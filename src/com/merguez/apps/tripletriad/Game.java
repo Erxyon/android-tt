@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.merguez.apps.tripletriad.cards.Card;
 import com.merguez.apps.tripletriad.cards.CompleteCardView;
+import com.merguez.apps.tripletriad.combat.EventFiredListener;
 import com.merguez.apps.tripletriad.robots.Action;
 import com.merguez.apps.tripletriad.robots.BotHard;
 import com.merguez.apps.tripletriad.robots.iBot;

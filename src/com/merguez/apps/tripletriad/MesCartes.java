@@ -15,8 +15,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockListFragment;
-import com.merguez.apps.tripletriad.Cards.CardAdapter;
-import com.merguez.apps.tripletriad.Cards.ViewHolder;
 import com.merguez.apps.tripletriad.cards.Card;
 import com.merguez.apps.tripletriad.cards.CompleteCardView;
 import com.merguez.apps.tripletriad.data.DatabaseStream;

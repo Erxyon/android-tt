@@ -1,4 +1,4 @@
-package com.merguez.apps.tripletriad.settings;
+package com.merguez.apps.tripletriad;
 
 import java.util.List;
 

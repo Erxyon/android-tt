@@ -18,9 +18,9 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 
-import com.merguez.apps.tripletriad.Engine;
 import com.merguez.apps.tripletriad.R;
 import com.merguez.apps.tripletriad.cards.Card.Element;
+import com.merguez.apps.tripletriad.combat.Engine;
 
 
 public class CompleteCardView extends ImageView

@@ -1,6 +1,6 @@
 package com.merguez.apps.tripletriad.views;
 
-import com.merguez.apps.tripletriad.Engine;
+import com.merguez.apps.tripletriad.combat.Engine;
 
 import android.content.Context;
 import android.graphics.Bitmap;

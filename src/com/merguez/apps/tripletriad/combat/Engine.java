@@ -1,4 +1,4 @@
-package com.merguez.apps.tripletriad;
+package com.merguez.apps.tripletriad.combat;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import android.util.Log;
 
-import com.merguez.apps.tripletriad.Engine;
+import com.merguez.apps.tripletriad.combat.Engine;
 
 /*  Copyright (C) <2011-2012>  <Sylvain "Viish" Berfini>
 

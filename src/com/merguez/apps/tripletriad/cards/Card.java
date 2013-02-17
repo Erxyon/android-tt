@@ -9,7 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 
-import com.merguez.apps.tripletriad.Engine;
+import com.merguez.apps.tripletriad.combat.Engine;
 
 
 /*

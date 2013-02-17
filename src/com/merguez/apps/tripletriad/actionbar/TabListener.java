@@ -7,7 +7,6 @@ import android.util.Log;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
-import com.merguez.apps.tripletriad.CardsActivity;
 import com.merguez.apps.tripletriad.Jouer;
 import com.merguez.apps.tripletriad.MesCartes;
 

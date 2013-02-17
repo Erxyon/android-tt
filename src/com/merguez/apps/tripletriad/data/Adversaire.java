@@ -1,4 +1,4 @@
-package com.merguez.apps.tripletriad;
+package com.merguez.apps.tripletriad.data;
 
 public class Adversaire {
 
