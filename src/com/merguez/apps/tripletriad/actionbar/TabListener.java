@@ -5,14 +5,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
-import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.ActionBar.Tab;
 import com.merguez.apps.tripletriad.Jouer;
 import com.merguez.apps.tripletriad.MesCartes;
 
-public class TabListener implements ActionBar.TabListener
+public class TabListener /*implements ActionBar.TabListener*/
 {
-	private Fragment mFragment;
+	/*private Fragment mFragment;
 	private int num;
 	
 	public TabListener(int num) {
@@ -67,5 +65,5 @@ public class TabListener implements ActionBar.TabListener
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 		Log.d("ActionBar", num+" onTabReselected : "+tab.getPosition());
 		// User selected the already selected tab. Usually do nothing.
-	}
+	}*/
 }

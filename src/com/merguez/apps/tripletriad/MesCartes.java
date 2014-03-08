@@ -14,13 +14,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.actionbarsherlock.app.SherlockListFragment;
+import android.support.v4.*;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.ListFragment;
+
 import com.merguez.apps.tripletriad.cards.Card;
 import com.merguez.apps.tripletriad.cards.CompleteCardView;
 import com.merguez.apps.tripletriad.data.DatabaseStream;
 import com.merguez.apps.tripletriad.data.ListeCartes;
 
-public class MesCartes  extends SherlockListFragment {
+public class MesCartes  extends ListFragment {
 
 	private Context context;
 	private CardAdapter adapter;

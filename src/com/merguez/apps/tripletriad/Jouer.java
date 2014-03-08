@@ -4,19 +4,19 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.actionbarsherlock.app.SherlockFragment;
-import com.actionbarsherlock.app.SherlockListFragment;
 import com.merguez.apps.tripletriad.MesCartes.CardAdapter;
 import com.merguez.apps.tripletriad.cards.Card;
 import com.merguez.apps.tripletriad.data.Adversaire;
 import com.merguez.apps.tripletriad.data.DatabaseStream;
 
-public class Jouer extends SherlockListFragment {
+public class Jouer extends ListFragment {
 
 	private Context context;
 	private CardAdapter adapter;
@@ -53,8 +53,8 @@ public class Jouer extends SherlockListFragment {
 
 
 
-		adapter = new CardAdapter(context, listeAdversaires); 
-		setListAdapter(adapter);
+		//adapter = new CardAdapter(context, listeAdversaires); 
+		//setListAdapter(adapter);
 
 		getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
